@@ -1,7 +1,14 @@
 import { getProductById, updateProduct, deleteProduct } from "@/services/productService";
 
 export async function GET(req, { params }) {
-  const data = await getProductById(params.id);
+  const { id } = await params;
+  if (!id) {
+    return Response.json({ error: "Invalid ID" }, { status: 400 });
+  }
+  const data = await getProductById(id);
+  if (!data) {
+    return Response.json({ error: "Product not found" }, { status: 404 });
+  }
   return Response.json(data);
 }
 
@@ -12,6 +19,7 @@ export async function PUT(req, { params }) {
 }
 
 export async function DELETE(req, { params }) {
-  await deleteProduct(params.id);
+  const { id } = await params;
+  await deleteProduct(id);
   return Response.json({ message: "Deleted" });
 }
