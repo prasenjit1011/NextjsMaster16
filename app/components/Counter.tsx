@@ -10,7 +10,7 @@ export default function Counter({pageName = 'Home'}: {pageName: string}) {
 
   return (
     <div>
-      <h3>{pageName} Count: {count}</h3>
+      <h3>{pageName} Count:::: {count}</h3>
       <button onClick={() => dispatch(increment())}>cnt +</button>
     </div>
   );
