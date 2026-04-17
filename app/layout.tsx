@@ -16,6 +16,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Link href="/renderpage/ssg">SSG</Link>
             <Link href="/renderpage/isr">ISR</Link>
             <Link href="/renderpage/csr">CSR</Link>
+            <Link href="/dashboard">Dashboard</Link>
           </nav>
           {children}
         </ReduxProvider>
