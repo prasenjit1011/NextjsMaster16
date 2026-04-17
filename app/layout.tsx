@@ -12,6 +12,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Link href="/aboutus">Aboutus</Link>
             <Link href="/category">Category</Link>
             <Link href="/category/product">Product</Link>
+            <Link href="/renderpage/ssr">SSR</Link>
+            <Link href="/renderpage/ssg">SSG</Link>
+            <Link href="/renderpage/isr">ISR</Link>
+            <Link href="/renderpage/csr">CSR</Link>
           </nav>
           {children}
         </ReduxProvider>
