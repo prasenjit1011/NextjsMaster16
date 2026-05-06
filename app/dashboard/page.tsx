@@ -1,12 +1,14 @@
 'use client';
+import { useRouter } from 'next/navigation';
 
 export default function DashboardPage() {
+  const router = useRouter();
   const handleLogout = async () => {
     await fetch('/api/auth/logout', {
       method: 'POST',
     });
 
-    window.location.href = '/login';
+    router.replace('/login');
   };
 
   return (

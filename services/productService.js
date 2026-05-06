@@ -3,7 +3,7 @@ import pool from "@/lib/db";
 export async function getAllProducts() {
   const conn = await pool.getConnection();
   try {
-    return await conn.query("SELECT * FROM product");
+    return await conn.query("SELECT * FROM products");
   } finally {
     conn.release();
   }
@@ -12,7 +12,7 @@ export async function getAllProducts() {
 export async function getProductById(id) {
   const conn = await pool.getConnection();
   try {
-    const rows = await conn.query("SELECT * FROM product WHERE id=?", [id]);
+    const rows = await conn.query("SELECT * FROM products WHERE id=?", [id]);
     return rows[0];
   } finally {
     conn.release();
@@ -23,7 +23,7 @@ export async function createProduct({ name, price, status }) {
   const conn = await pool.getConnection();
   try {
     const res = await conn.query(
-      "INSERT INTO product (name, price, status) VALUES (?, ?, ?)",
+      "INSERT INTO products (name, price, status) VALUES (?, ?, ?)",
       [name, price, status]
     );
     return res;

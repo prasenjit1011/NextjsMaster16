@@ -1,4 +1,7 @@
 "use client";
+// export default function Time() {
+//   return <p>{new Date().toISOString()}</p>;
+// }
 
 import { useState, useEffect } from "react";
 

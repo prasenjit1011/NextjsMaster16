@@ -3,10 +3,12 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('admin@test.com');
   const [password, setPassword] = useState('123456');
+  const router = useRouter();
 
   const handleLogin = async () => {
     const res = await fetch('/api/auth/login', {
@@ -15,7 +17,7 @@ export default function LoginPage() {
     });
 
     if (res.ok) {
-      window.location.href = '/dashboard';
+      router.replace('/dashboard');
     }
   };
 
