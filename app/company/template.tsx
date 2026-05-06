@@ -4,8 +4,8 @@ export default function Template({
   children: React.ReactNode;
 }) {
   return (
-    <div style={{ border: "2px solid blue", padding: 10, marginTop: 10 }}>
-      <h4>Root Template</h4>
+    <div style={{ border: "2px dashed blue", padding: "10px" }}>
+      <h3>Template Wrapper</h3>
       {children}
     </div>
   );

@@ -12,6 +12,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html>
       <body>
         <ReduxProvider>
+          <div style={{ border: "2px solid #b70951", padding: 10, marginTop: 10 }}>
+          <h4>Root Layout</h4>
           <nav style={{ display: 'flex', gap: 10 }}>
             <Link href="/">Home</Link>
             <Link href="/demo">Template</Link>
@@ -26,6 +28,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Link href="/company">Company</Link>
           </nav>
           {children}
+          </div>
         </ReduxProvider>
       </body>
     </html>

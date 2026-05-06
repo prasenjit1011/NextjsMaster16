@@ -1,0 +1,11 @@
+import { NextResponse } from "next/server";
+
+export async function GET() {
+  const companies = [
+    { name: "Google", price: 200 },
+    { name: "Microsoft", price: 150 },
+    { name: "TCS", price: 100 },
+  ];
+
+  return NextResponse.json(companies);
+}
