@@ -9,12 +9,12 @@ export default function LoginPage() {
   const [email, setEmail] = useState('admin@test.com');
   const [password, setPassword] = useState('123456');
   const router = useRouter();
+  const obj = {email, password};
+  const payload = JSON.stringify(obj);
+  const bodyData  = {method: 'POST',body: payload, headers: {'Content-Type': 'application/json'}};
 
   const handleLogin = async () => {
-    const res = await fetch('/api/auth/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-    });
+    const res = await fetch('/api/auth/login', bodyData);
 
     if (res.ok) {
       router.replace('/dashboard');
