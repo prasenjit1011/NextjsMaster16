@@ -9,8 +9,9 @@ export default async function Page() {
 
   return (
     <div>
-      <h1>SSR Page</h1>
-      <h3>{data.title}</h3>
+      <h1>Server Side Rendering(SSR) Page : {Math.floor(Math.random() * 100)} : {new Date().toLocaleTimeString()}</h1>
+      <h3><b>HTML is generated on every request</b></h3>
+      <h3><b>{data?.title.toUpperCase()}</b></h3>
     </div>
   );
 }

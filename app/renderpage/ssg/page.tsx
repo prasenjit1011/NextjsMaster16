@@ -7,8 +7,9 @@ export default async function Page() {
 
   return (
     <div>
-      <h1>SSG Page</h1>
-      <p>{data.title}</p>
+      <h1>Static Site Generation(SSG) Page : {Math.floor(Math.random() * 100)} : {new Date().toLocaleTimeString()}</h1>
+      <h3>HTML is generated at build time</h3>
+      <p><b>{data?.title.toUpperCase()}</b></p>
     </div>
   );
 }
