@@ -1,4 +1,4 @@
-import Counter from '../components/Counter';
+import Counter from '../../components/Counter';
 import Link from 'next/link';
 
 export default function Category() {

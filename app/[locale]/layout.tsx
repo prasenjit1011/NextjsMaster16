@@ -1,4 +1,4 @@
-import ReduxProvider from '../lib/provider';
+import ReduxProvider from '../../lib/provider';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 

@@ -1,6 +1,8 @@
 // middleware.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import createMiddleware from 'next-intl/middleware';
+
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get('token')?.value;
@@ -14,6 +16,15 @@ export function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
+export default createMiddleware({
+  locales: ['en', 'bn', 'hi'],
+  defaultLocale: 'en'
+});
+
 export const config = {
-  matcher: ['/dashboard/:path*'],
+  matcher: [
+    '/', 
+    '/(bn|en|hi)/:path*',
+    '/dashboard/:path*'
+  ],
 };
