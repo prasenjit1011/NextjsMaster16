@@ -10,8 +10,7 @@ export const metadata = {
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
         <ReduxProvider>
-          <div style={{ border: "2px solid #b70951", padding: 10, marginTop: 10 }}>
-          <h4>Root Layout</h4>
+          <div style={{ border: "0px solid #b70951", padding: 0, marginTop: 0 }}>
           <NavBar />
           {children}
           </div>
@@ -21,26 +20,29 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
 
 const NavBar = () => {
   return (
-    <nav style={{ display: 'flex', gap: 10 }}>
-      <Link href="/">Home</Link>
-      <Link href="/demo">Template</Link>
-      <Link href="/aboutus">Aboutus</Link>
-      <Link href="/category">Category</Link>
-      <Link href="/category/item">Item</Link>
-      <Link href="/renderpage/ssr">SSR</Link>
-      <Link href="/renderpage/ssg">SSG</Link>
-      <Link href="/renderpage/isr">ISR</Link>
-      <Link href="/renderpage/csr">CSR</Link>
-      <Link href="/dashboard">Dashboard</Link>
-      <Link href="/company">Company</Link>
-      <Link href="/hydration">Hydration</Link>
-      <Link href="/error">Error</Link>
-      <div style={{ marginLeft: 'auto', display: 'flex', gap: 10 }}>
-        <Link href="/en">Eng</Link>
-        <Link href="/bn">Ben</Link>
-        <Link href="/hi">Hindi</Link>
-      </div>
-    </nav>
+      <header>
+        <div className="logo">MyWebsite</div>
+        <nav style={{ display: 'flex', gap: 10 }}>
+          <Link href="/">Home</Link>
+          <Link href="/demo">Template</Link>
+          <Link href="/aboutus">Aboutus</Link>
+          <Link href="/category">Category</Link>
+          <Link href="/category/item">Item</Link>
+          <Link href="/renderpage/ssr">SSR</Link>
+          <Link href="/renderpage/ssg">SSG</Link>
+          <Link href="/renderpage/isr">ISR</Link>
+          <Link href="/renderpage/csr">CSR</Link>
+          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/company">Company</Link>
+          <Link href="/hydration">Hydration</Link>
+          <Link href="/error">Error</Link>
+          <div style={{ marginLeft: 'auto', display: 'flex', gap: 10 }}>
+            <Link href="/en">Eng</Link>
+            <Link href="/bn">Ben</Link>
+            <Link href="/hi">Hindi</Link>
+          </div>
+        </nav>
+      </header>
   );
 }
 

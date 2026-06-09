@@ -22,11 +22,33 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <input onChange={(e) => setEmail(e.target.value)} value={email} />
-      <input onChange={(e) => setPassword(e.target.value)} value={password} />
-      <button onClick={handleLogin} style={{cursor:'pointer'}}>Login</button>
+    <div className="container">
+      <div className="login-card">
+          <h2>Welcome Back</h2>
+          <p>Sign in to continue</p>
+    
+        <div className="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} value={email} />                  
+        </div>
+
+        <div className="form-group">
+            <label>Password</label>
+            <input type="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)} value={password} />
+            
+        </div>
+
+        <div className="options">
+            <label>
+                <input type="checkbox" />
+                Remember me
+            </label>
+            <a href="#">Forgot Password?</a>
+        </div>
+        <div className="signup">
+            <button onClick={handleLogin} style={{cursor:'pointer'}}>Login</button>
+        </div>
+      </div>
     </div>
   );
 }
