@@ -10,8 +10,10 @@ export default function Counter({pageName = 'Home'}: {pageName: string}) {
 
   return (
     <div>
-      <h3>{pageName} Count:::: {count}</h3>
-      <button onClick={() => dispatch(increment())}>cnt +</button>
+      <h3>{pageName}: {count}</h3>
+      <a href="#" className="btn" onClick={() => dispatch(increment())} >
+        Get Started
+      </a>
     </div>
   );
 }

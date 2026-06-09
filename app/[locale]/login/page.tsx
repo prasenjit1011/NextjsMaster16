@@ -46,7 +46,7 @@ export default function LoginPage() {
             <a href="#">Forgot Password?</a>
         </div>
         <div className="signup">
-            <button onClick={handleLogin} style={{cursor:'pointer'}}>Login</button>
+            <button onClick={handleLogin} style={{cursor:'pointer'}} className="btn">Login</button>
         </div>
       </div>
     </div>

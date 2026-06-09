@@ -1,7 +1,7 @@
 {
   "HomePage": {
     "title": "Welcome",
-    "description": "Next.js Multi Language App",
-    "counterPage": "Counter Page"
+    "description": "Create modern web applications with scalable architecture and outstanding user experiences.",
+    "counterPage": "Button click count"
   }
 }
