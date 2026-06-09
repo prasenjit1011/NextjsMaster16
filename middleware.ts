@@ -1,30 +1,32 @@
 // middleware.ts
+
+import createMiddleware from 'next-intl/middleware';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import createMiddleware from 'next-intl/middleware';
 
+const intlMiddleware = createMiddleware({
+  locales: ['en', 'bn', 'hi'],
+  defaultLocale: 'en'
+});
 
-export function middleware(request: NextRequest) {
+export default function middleware(request: NextRequest) {
   const token = request.cookies.get('token')?.value;
 
-  const isProtected = request.nextUrl.pathname.startsWith('/dashboard');
+  const pathname = request.nextUrl.pathname;
+
+  const isProtected =
+    pathname.startsWith('/dashboard') ||
+    pathname.startsWith('/en/dashboard') ||
+    pathname.startsWith('/bn/dashboard') ||
+    pathname.startsWith('/hi/dashboard');
 
   if (isProtected && !token) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
-  return NextResponse.next();
+  return intlMiddleware(request);
 }
 
-export default createMiddleware({
-  locales: ['en', 'bn', 'hi'],
-  defaultLocale: 'en'
-});
-
 export const config = {
-  matcher: [
-    '/', 
-    '/(bn|en|hi)/:path*',
-    '/dashboard/:path*'
-  ],
+  matcher: ['/((?!api|_next|.*\\..*).*)']
 };
