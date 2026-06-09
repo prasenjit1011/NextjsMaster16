@@ -35,6 +35,11 @@ const NavBar = () => {
       <Link href="/company">Company</Link>
       <Link href="/hydration">Hydration</Link>
       <Link href="/error">Error</Link>
+      <div style={{ marginLeft: 'auto', display: 'flex', gap: 10 }}>
+        <Link href="/en">Eng</Link>
+        <Link href="/bn">Ben</Link>
+        <Link href="/hi">Hindi</Link>
+      </div>
     </nav>
   );
 }
