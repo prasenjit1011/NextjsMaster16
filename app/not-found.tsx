@@ -6,7 +6,7 @@ export default function NotFound() {
       <div className="error-card">
         <span className="error-code">404</span>
 
-        <h1>Oops! Root Page Not Found</h1>
+        <h1>Oops! Root Page Not Found.</h1>
 
         <p>
           The page you are looking for doesn't exist, has been moved,
