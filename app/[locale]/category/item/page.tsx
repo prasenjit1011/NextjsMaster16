@@ -4,11 +4,24 @@ import "./item.css";
 async function getProducts() {
   try {
     const res = await fetch("https://fakestoreapi.com/products", {
-      next: { revalidate: 3600 },
+      cache: "no-store",
+      headers: {
+        Accept: "application/json",
+        "User-Agent": "Mozilla/5.0",
+      },
     });
 
     if (!res.ok) {
-      throw new Error(`HTTP Error: ${res.status}`);
+      const errorBody = await res.text();
+
+      return {
+        products: [],
+        error: {
+          status: res.status,
+          statusText: res.statusText,
+          body: errorBody,
+        },
+      };
     }
 
     const products = await res.json();
@@ -20,10 +33,14 @@ async function getProducts() {
   } catch (error) {
     return {
       products: [],
-      error:
-        error instanceof Error
-          ? error.message
-          : "Unknown error occurred",
+      error: {
+        status: "FETCH_ERROR",
+        statusText: "Request Failed",
+        body:
+          error instanceof Error
+            ? error.message
+            : "Unknown error occurred",
+      },
     };
   }
 }
@@ -44,23 +61,50 @@ export default async function ItemPage() {
       {error && (
         <div
           style={{
-            background: "#ffe5e5",
-            color: "#d32f2f",
-            padding: "16px",
+            background: "#fff3f3",
+            border: "1px solid #ff4d4f",
             borderRadius: "8px",
-            marginBottom: "20px",
-            border: "1px solid #d32f2f",
+            padding: "20px",
+            marginBottom: "24px",
+            color: "#d32f2f",
           }}
         >
-          <h3>❌ Failed to Load Products</h3>
-          <p>{error}</p>
+          <h2>❌ API Request Failed</h2>
+
+          <p>
+            <strong>Status:</strong> {error.status}
+          </p>
+
+          <p>
+            <strong>Status Text:</strong> {error.statusText}
+          </p>
+
+          <p>
+            <strong>Response:</strong>
+          </p>
+
+          <pre
+            style={{
+              whiteSpace: "pre-wrap",
+              overflowX: "auto",
+              background: "#f5f5f5",
+              padding: "12px",
+              borderRadius: "6px",
+              color: "#333",
+            }}
+          >
+            {error.body}
+          </pre>
         </div>
       )}
 
       {!error && (
         <div className="product-grid">
           {products.map((product: any) => (
-            <article key={product.id} className="product-card">
+            <article
+              key={product.id}
+              className="product-card"
+            >
               <div className="image-wrapper">
                 <Image
                   src={product.image}
