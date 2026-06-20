@@ -63,7 +63,7 @@ export default async function ItemPage() {
   return (
     <main className="item-container">
       <div className="page-header">
-        <h1>🛍️ Product Catalog</h1>
+        <h1>🛍️ Product Catalog Page</h1>
         <p>
           Explore our curated collection of premium products across multiple
           categories.
