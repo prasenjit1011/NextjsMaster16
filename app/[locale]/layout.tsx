@@ -46,7 +46,6 @@ const NavBar = async () => {
 
       <nav className="navbar">
         <Link href="/">Home</Link>
-        <Link href="/demo">Template</Link>
         <Link href="/aboutus">About Us</Link>
         <Link href="/category">Category</Link>
 
