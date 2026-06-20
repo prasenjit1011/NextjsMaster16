@@ -20,10 +20,19 @@ export default function LoginPage() {
     if (res.ok) {
       setLogStatus(123)
       router.refresh();
-      router.replace('/dashboard');
-      router.push('/dashboard');
-      // window.location.href = '/dashboard';
-      window.location.assign('/dashboard');
+
+      try {
+        console.log('Dashboard')
+        router.push('/dashboard');
+      } catch (err) {
+        console.error('Error')
+        console.error(err);
+      }
+
+      // router.replace('/dashboard');
+      // router.push('/dashboard');
+      // // window.location.href = '/dashboard';
+      // window.location.assign('/dashboard');
     }
   };
 

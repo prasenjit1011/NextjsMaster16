@@ -30,12 +30,7 @@ export default async function ItemPage() {
         {products.map((product: any) => (
           <article key={product.id} className="product-card">
             <div className="image-wrapper">
-              <Image
-                src={product.image}
-                alt={product.title}
-                fill
-                className="product-image"
-              />
+              
             </div>
 
             <div className="product-content">
