@@ -1,4 +1,4 @@
-import './aboutus.css'
+import styles from "./aboutus.module.css"
 import Counter from "../../components/Counter";
 
 export const metadata = {
@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function Aboutus() {
   return (
-    <main className="container">
+    <main className={styles.container}>
       <section>
         <h1>About Us</h1>
 

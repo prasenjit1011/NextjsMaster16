@@ -1,7 +1,7 @@
 // app/login/page.tsx
 
 'use client';
-
+import './../../style.css'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
