@@ -2,6 +2,19 @@
   "HomePage": {
     "title": "Welcome",
     "description": "Create modern web applications with scalable architecture and outstanding user experiences.",
-    "counterPage": "Button click count"
+    "counterPage": "Button click count",
+    "Home": "Home",
+    "About Us": "About Us",
+    "Category": "Category",
+    "Render": "Rendering",
+    "Item": "Item",
+    "SSR": "Server-Side Rendering",
+    "SSG": "Static Site Generation",
+    "ISR": "Incremental Static Regeneration",
+    "CSR": "Client-Side Rendering",
+    "Dashboard": "Dashboard",
+    "Company": "Company",
+    "Hydration": "Hydration",
+    "Error": "Error"
   }
 }

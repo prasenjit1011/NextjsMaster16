@@ -3,16 +3,16 @@ import Counter from '../components/Counter';
 import { useTranslations } from 'next-intl';
 
 export default function Home() {
-  const t = useTranslations('HomePage');
+  const text = useTranslations('HomePage');
 
   return (
     <>
       <section className="hero">
-        <h1>{t('title')}</h1>
+        <h1>{text('title')}</h1>
 
-        <p>{t('description')}</p>
+        <p>{text('description')}</p>
 
-        <Counter pageName={t('counterPage')} />
+        <Counter pageName={text('counterPage')} />
       </section>
       
 

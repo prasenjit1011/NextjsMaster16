@@ -5,9 +5,10 @@
 import ReduxProvider from '../../lib/provider';
 import Link from 'next/link';
 import { ReactNode } from 'react';
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import './navbar.css'
+import { useTranslations } from 'next-intl';
 
 export const metadata = {
   title: "My App",
@@ -34,9 +35,8 @@ const languages = [
 
 const NavBar = async () => { 
   const locale = await getLocale();
-
   const selectedLanguage = languages.find((lang) => lang.code === locale) || languages[0];
-  // const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
+  const text = await getTranslations('HomePage');
    
 
 
@@ -45,27 +45,27 @@ const NavBar = async () => {
       <div className="logo">MyWebsite-{locale}</div>
 
       <nav className="navbar">
-        <Link href="/">Home</Link>
-        <Link href="/aboutus">About Us</Link>
-        <Link href="/category">Category</Link>
+        <Link href="/">{text('Home')}</Link>
+        <Link href="/aboutus">{text('About Us')}</Link>
+        <Link href="/category">{text('Category')}</Link>
 
         {/* Render Dropdown */}
         <div className="dropdown">
-          <span className="dropdown-btn">Render ▼</span>
+          <span className="dropdown-btn">{text('Render')} ▼</span>
 
           <div className="dropdown-content">
-            <Link href="/category/item">Item</Link>
-            <Link href="/renderpage/ssr">SSR</Link>
-            <Link href="/renderpage/ssg">SSG</Link>
-            <Link href="/renderpage/isr">ISR</Link>
-            <Link href="/renderpage/csr">CSR</Link>
+            <Link href="/category/item">{text('Item')}</Link>
+            <Link href="/renderpage/ssr">{text('SSR')}</Link>
+            <Link href="/renderpage/ssg">{text('SSG')}</Link>
+            <Link href="/renderpage/isr">{text('ISR')}</Link>
+            <Link href="/renderpage/csr">{text('CSR')}</Link>
           </div>
         </div>
 
-        <Link href="/dashboard">Dashboard</Link>
-        <Link href="/company">Company</Link>
-        <Link href="/hydration">Hydration</Link>
-        <Link href="/error">Error</Link>
+        <Link href="/dashboard">{text('Dashboard')}</Link>
+        <Link href="/company">{text('Company')}</Link>
+        <Link href="/hydration">{text('Hydration')}</Link>
+        <Link href="/error">{text('Error')}</Link>
 
         {/* Language Dropdown */}
         <div className="language-dropdown">
