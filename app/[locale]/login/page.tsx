@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 export default function LoginPage() {
   const [email, setEmail] = useState('admin@test.com');
   const [password, setPassword] = useState('123456');
+  const [logStatus, setLogStatus] = useState(0)
   const router = useRouter();
   const obj = {email, password};
   const payload = JSON.stringify(obj);
@@ -17,7 +18,12 @@ export default function LoginPage() {
     const res = await fetch('/api/auth/login', bodyData);
 
     if (res.ok) {
+      setLogStatus(123)
+      router.refresh();
       router.replace('/dashboard');
+      router.push('/dashboard');
+      // window.location.href = '/dashboard';
+      window.location.assign('/dashboard');
     }
   };
 
