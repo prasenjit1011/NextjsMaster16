@@ -14,7 +14,7 @@ export default function NotFound() {
           or is temporarily unavailable.
         </p>
 
-        <Link href="/en" className="home-btn">
+        <Link href="/" className="home-btn">
           ← Back to Home
         </Link>
       </div>
