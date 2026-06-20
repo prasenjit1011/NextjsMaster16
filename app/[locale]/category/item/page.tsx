@@ -1,17 +1,38 @@
 import Image from "next/image";
 import "./item.css";
 
+// async function getProducts() {
+//   const res = await fetch("https://fakestoreapi.com/products", {
+//     next: { revalidate: 3600 },
+//   });
+
+//   if (!res.ok) {
+//     throw new Error("Failed to fetch products");
+//   }
+
+//   return res.json();
+// }
+
+
 async function getProducts() {
-  const res = await fetch("https://fakestoreapi.com/products", {
-    next: { revalidate: 3600 },
-  });
+  try {
+    const res = await fetch("https://fakestoreapi.com/products", {
+      next: { revalidate: 3600 },
+    });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch products");
+    console.log("Status:", res.status);
+
+    if (!res.ok) {
+      throw new Error(`API Error: ${res.status}`);
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("getProducts Error:", error);
+    throw error;
   }
-
-  return res.json();
 }
+
 
 export default async function ItemPage() {
   const products = await getProducts();
