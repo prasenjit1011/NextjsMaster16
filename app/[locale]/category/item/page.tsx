@@ -1,38 +1,6 @@
 import Image from "next/image";
 import "./item.css";
 
-// async function getProducts() {
-//   const res = await fetch("https://fakestoreapi.com/products", {
-//     next: { revalidate: 3600 },
-//   });
-
-//   if (!res.ok) {
-//     throw new Error("Failed to fetch products");
-//   }
-
-//   return res.json();
-// }
-
-
-// async function getProducts() {
-//   try {
-//     const res = await fetch("https://fakestoreapi.com/products", {
-//       next: { revalidate: 3600 },
-//     });
-
-//     console.log("Status:", res.status);
-
-//     if (!res.ok) {
-//       throw new Error(`API Error: ${res.status}`);
-//     }
-
-//     return await res.json();
-//   } catch (error) {
-//     console.error("getProducts Error:", error);
-//     throw error;
-//   }
-// }
-
 async function getProducts() {
   try {
     const res = await fetch("https://fakestoreapi.com/products", {
@@ -43,22 +11,25 @@ async function getProducts() {
       throw new Error(`HTTP Error: ${res.status}`);
     }
 
+    const products = await res.json();
+
     return {
-      products: await res.json(),
+      products,
       error: null,
     };
   } catch (error) {
     return {
       products: [],
       error:
-        error instanceof Error ? error.message : "Unknown error occurred",
+        error instanceof Error
+          ? error.message
+          : "Unknown error occurred",
     };
   }
 }
 
-
 export default async function ItemPage() {
-  const products = await getProducts();
+  const { products, error } = await getProducts();
 
   return (
     <main className="item-container">
@@ -70,41 +41,60 @@ export default async function ItemPage() {
         </p>
       </div>
 
-      <div className="product-grid">
-        {[].map((product: any) => (
-          <article key={product.id} className="product-card">
-            <div className="image-wrapper">
-              <Image
-                src={product.image}
-                alt={product.title}
-                fill
-                className="product-image"
-              />
-            </div>
+      {error && (
+        <div
+          style={{
+            background: "#ffe5e5",
+            color: "#d32f2f",
+            padding: "16px",
+            borderRadius: "8px",
+            marginBottom: "20px",
+            border: "1px solid #d32f2f",
+          }}
+        >
+          <h3>❌ Failed to Load Products</h3>
+          <p>{error}</p>
+        </div>
+      )}
 
-            <div className="product-content">
-              <span className="category-badge">
-                {product.category}
-              </span>
+      {!error && (
+        <div className="product-grid">
+          {products.map((product: any) => (
+            <article key={product.id} className="product-card">
+              <div className="image-wrapper">
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  fill
+                  sizes="300px"
+                  className="product-image"
+                />
+              </div>
 
-              <h3>{product.title}</h3>
-
-              <p>
-                {product.description.slice(0, 90)}
-                ...
-              </p>
-
-              <div className="product-footer">
-                <span className="price">
-                  ${product.price}
+              <div className="product-content">
+                <span className="category-badge">
+                  {product.category}
                 </span>
 
-                <button>View Details</button>
+                <h3>{product.title}</h3>
+
+                <p>
+                  {product.description.slice(0, 90)}
+                  ...
+                </p>
+
+                <div className="product-footer">
+                  <span className="price">
+                    ${product.price}
+                  </span>
+
+                  <button>View Details</button>
+                </div>
               </div>
-            </div>
-          </article>
-        ))}
-      </div>
+            </article>
+          ))}
+        </div>
+      )}
     </main>
   );
 }
