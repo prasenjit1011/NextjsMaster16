@@ -14,22 +14,45 @@ import "./item.css";
 // }
 
 
+// async function getProducts() {
+//   try {
+//     const res = await fetch("https://fakestoreapi.com/products", {
+//       next: { revalidate: 3600 },
+//     });
+
+//     console.log("Status:", res.status);
+
+//     if (!res.ok) {
+//       throw new Error(`API Error: ${res.status}`);
+//     }
+
+//     return await res.json();
+//   } catch (error) {
+//     console.error("getProducts Error:", error);
+//     throw error;
+//   }
+// }
+
 async function getProducts() {
   try {
     const res = await fetch("https://fakestoreapi.com/products", {
       next: { revalidate: 3600 },
     });
 
-    console.log("Status:", res.status);
-
     if (!res.ok) {
-      throw new Error(`API Error: ${res.status}`);
+      throw new Error(`HTTP Error: ${res.status}`);
     }
 
-    return await res.json();
+    return {
+      products: await res.json(),
+      error: null,
+    };
   } catch (error) {
-    console.error("getProducts Error:", error);
-    throw error;
+    return {
+      products: [],
+      error:
+        error instanceof Error ? error.message : "Unknown error occurred",
+    };
   }
 }
 
