@@ -1,9 +1,11 @@
 import Image from "next/image";
 import "./item.css";
 
+const url = 'https://dummyjson.com/products'
+// const url = 'https://fakestoreapi.com/products'
 async function getProducts() {
   try {
-    const res = await fetch("https://fakestoreapi.com/products", {
+    const res = await fetch(url, {
       cache: "no-store",
       headers: {
         Accept: "application/json",
@@ -24,10 +26,10 @@ async function getProducts() {
       };
     }
 
-    const products = await res.json();
+    const data = await res.json();
 
     return {
-      products,
+      products:data['products'],
       error: null,
     };
   } catch (error) {
@@ -107,7 +109,7 @@ export default async function ItemPage() {
             >
               <div className="image-wrapper">
                 <Image
-                  src={product.image}
+                  src={product.thumbnail}
                   alt={product.title}
                   fill
                   sizes="300px"
