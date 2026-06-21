@@ -1,11 +1,11 @@
-// app/login/page.tsx
-
 'use client';
 import './../../style.css'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+// import { getLocale } from 'next-intl/server';
 
-export default function LoginPage() {
+const LoginPage = () =>{
+  // const locale = await getLocale();
   const [email, setEmail] = useState('admin@test.com');
   const [password, setPassword] = useState('123456');
   const [logStatus, setLogStatus] = useState(0)
@@ -29,10 +29,9 @@ export default function LoginPage() {
         console.error(err);
       }
 
-      // router.replace('/dashboard');
-      // router.push('/dashboard');
-      // // window.location.href = '/dashboard';
-      // window.location.assign('/dashboard');
+
+      router.replace('/en/dashboard');
+      // router.push('/en/dashboard');
     }
   };
 
@@ -67,3 +66,5 @@ export default function LoginPage() {
     </div>
   );
 }
+
+export default LoginPage;

@@ -9,6 +9,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 import './navbar.css'
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 
 export const metadata = {
   title: "My App",
@@ -42,7 +43,15 @@ const NavBar = async () => {
 
   return (
     <header>
-      <div className="logo">MyWebsite-{locale}</div>
+      <div className="logo">
+        <Image
+          src="/logo.svg"
+          alt={`MyWebsite ${locale}`}
+          width='200'
+          height='70'
+        />
+        
+      </div>
 
       <nav className="navbar">
         <Link href="/">{text('Home')}</Link>
@@ -54,7 +63,6 @@ const NavBar = async () => {
           <span className="dropdown-btn">{text('Render')} ▼</span>
 
           <div className="dropdown-content">
-            <Link href="/category/item">{text('Item')}</Link>
             <Link href="/renderpage/ssr">{text('SSR')}</Link>
             <Link href="/renderpage/ssg">{text('SSG')}</Link>
             <Link href="/renderpage/isr">{text('ISR')}</Link>
@@ -62,11 +70,21 @@ const NavBar = async () => {
           </div>
         </div>
 
-        <Link href="/dashboard">{text('Dashboard')}</Link>
-        <Link href="/company">{text('Company')}</Link>
-        <Link href="/hydration">{text('Hydration')}</Link>
-        <Link href="/error">{text('Error')}</Link>
+        
+        <div className="dropdown">
+          <span className="dropdown-btn">{text('More')} ▼</span>
+          <div className="dropdown-content">            
+            <Link href="/company">{text('Company')}</Link>
+            <Link href="/category/item">{text('Item')}</Link>
+            <Link href="/hydration">{text('Hydration')}</Link>
+            <Link href="/error">{text('Error')}</Link>
+          </div>
+        </div>
 
+
+
+
+        <Link href="/dashboard">{text('Dashboard')}</Link>
         {/* Language Dropdown */}
         <div className="language-dropdown">
           <button className="language-btn">
