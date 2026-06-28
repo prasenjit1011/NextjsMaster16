@@ -308,7 +308,7 @@ export const BannerCategory = async () => {
                     <div className="col-lg-6">
                         <div className="py-4">
                             <h1 className="display-3 text-white">{text('FreshExoticFruits')}</h1>
-                            <p className="fw-normal display-3 text-dark mb-4">in Our Store</p>
+                            <p className="fw-normal display-3 text-dark mb-4">{text('inOurStore')}</p>
                             <p className="mb-4 text-dark">{text('content01')}</p>
                             <a href="#" className="banner-btn btn border-2 border-white rounded-pill text-dark py-3 px-5">BUY</a>
                         </div>
