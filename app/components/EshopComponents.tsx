@@ -10,7 +10,12 @@ const languages = [
   { code: "hi", name: "हिन्दी", flag: "🇮🇳", href: "/hi" },
 ];
 
-const Banner = ({pageTitle}) => {
+
+interface BannerProps {
+    pageTitle: string;
+}
+
+const Banner = ({ pageTitle }: BannerProps) => {
     if(pageTitle === 'Home'){
         return <BannerHome />
     }
