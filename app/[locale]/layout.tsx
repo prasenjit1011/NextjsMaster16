@@ -30,16 +30,6 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   );
 }
 
-// const RootLayout = ({ children }: { children: ReactNode }) => {
-//   return (
-//         <ReduxProvider>
-//           <div style={{ border: "0px solid #b70951", padding: 0, marginTop: 0 }}>
-//           <NavBar />
-//           {children}
-//           </div>
-//         </ReduxProvider>
-//   );
-// }
 
 
 const languages = [
@@ -98,14 +88,14 @@ const NewNavBar = async () => {
         <small className="me-3">
           <i className="fas fa-map-marker-alt me-2 text-secondary"></i>
           <Link href="#" className="text-white">
-            123 Street, New York
+            230, Udyog Vihar Phase IV, Sector 18 Gurugram - 122015
           </Link>
         </small>
 
         <small className="me-3">
           <i className="fas fa-envelope me-2 text-secondary"></i>
-          <Link href="mailto:Email@example.com" className="text-white">
-            Email@example.com
+          <Link href="mailto:hello@tuliooutlet.shop" className="text-white">
+            hello@tuliooutlet.shop
           </Link>
         </small>
       </div>
@@ -138,7 +128,7 @@ const NewNavBar = async () => {
     <nav className="navbar navbar-light bg-white navbar-expand-xl">
       <Link href="/" className="navbar-brand">
         <h1 className="text-primary display-6">
-          Fruitables
+          TuliOutlet
         </h1>
       </Link>
 
@@ -181,6 +171,65 @@ const NewNavBar = async () => {
           >
             <i className="fas fa-search text-primary"></i>
           </button>
+
+
+
+<div className="dropdown me-4 my-auto">
+  <a
+    href="#"
+    className="dropdown-toggle text-dark"
+    data-bs-toggle="dropdown"
+  >
+    <i className="fas fa-globe fa-2x"></i>
+  </a>
+
+  <ul className="dropdown-menu">
+    <li>
+      <a
+        className="dropdown-item"
+        style={{ color: '#000' }}
+        href="?lang=en"
+      >
+        English
+      </a>
+    </li>
+
+    <li>
+      <a
+        className="dropdown-item"
+        style={{ color: '#000' }}
+        href="?lang=hi"
+      >
+        हिन्दी
+      </a>
+    </li>
+
+    <li>
+      <a
+        className="dropdown-item"
+        style={{ color: '#000' }}
+        href="?lang=bn"
+      >
+        বাংলা
+      </a>
+    </li>
+
+    <li>
+      <a
+        className="dropdown-item"
+        style={{ color: '#000' }}
+        href="?lang=ta"
+      >
+        தமிழ்
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+
+
+
 
           <Link
             href="/cart"
