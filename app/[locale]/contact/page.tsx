@@ -1,5 +1,4 @@
 
-import Counter from '../components/Counter';
 import { useTranslations } from 'next-intl';
 
 export default function Home() {

@@ -1,5 +1,4 @@
 
-import Counter from '../components/Counter';
 import { useTranslations } from 'next-intl';
 import { BannerCategory, OurService, ProductCategory, ProductRegular, Testimonial, TotalSale } from '../components/EshopComponents';
 
