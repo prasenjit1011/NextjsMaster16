@@ -1,0 +1,684 @@
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
+
+//import { useEffect } from 'react';
+
+const Banner = ({pageTitle}) => {
+    if(pageTitle === 'Home'){
+        return <BannerHome />
+    }
+
+    return (
+        <div className="container-fluid page-header py-5">
+            <h1 className="text-center text-white display-6">
+                Login
+            </h1>
+
+            <ol className="breadcrumb justify-content-center mb-0">
+                <li className="breadcrumb-item">
+                <a href="/">Home :{pageTitle}</a>
+                </li>
+
+                <li
+                className="breadcrumb-item active text-white"
+                aria-current="page"
+                >
+                Login
+                </li>
+            </ol>
+        </div>
+    );
+}
+
+const BannerHome = () =>{
+    return (
+        <div className="container-fluid py-5 mb-5 hero-header">
+            <div className="container py-5">
+                <div className="row g-5 align-items-center">
+                    <div className="col-md-12 col-lg-7">
+                        <h4 className="mb-3 text-secondary">100% Organic Foods</h4>
+                        <h1 className="mb-5 display-3 text-primary">Organic Veggies & Fruits Foods</h1>
+                        <div className="position-relative mx-auto">
+                            <input className="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill" type="number" placeholder="Search" />
+                            <button type="submit" className="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100" style={{top:" 0", right:" 25%"}}>Submit Now</button>
+                        </div>
+                    </div>
+                    <div className="col-md-12 col-lg-5">
+                        <div id="carouselId" className="carousel slide position-relative" data-bs-ride="carousel">
+                            <div className="carousel-inner" role="listbox">
+                                <div className="carousel-item active rounded">
+                                    <img src="/eshop/img/hero-img-1.png" className="img-fluid w-100 h-100 bg-secondary rounded" alt="First slide" />
+                                    <a href="#" className="btn px-4 py-2 text-white rounded">Fruites</a>
+                                </div>
+                                <div className="carousel-item rounded">
+                                    <img src="/eshop/img/hero-img-2.jpg" className="img-fluid w-100 h-100 rounded" alt="Second slide" />
+                                    <a href="#" className="btn px-4 py-2 text-white rounded">Vesitables</a>
+                                </div>
+                            </div>
+                            <button className="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+                                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span className="visually-hidden">Previous</span>
+                            </button>
+                            <button className="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+                                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span className="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export const Footer = () => {
+    return (
+        <div className="container-fluid copyright bg-dark py-4">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <span className="text-light"><a href="#"><i className="fas fa-copyright text-light me-2"></i>TuliOutlet</a>, All right reserved.</span>
+                    </div>
+                    <div className="col-md-6 my-auto text-center text-md-end text-white">
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+
+export const NewNavBar = async () => {
+    //const text = useTranslations('HomePage');
+    const text = await getTranslations('HomePage');
+
+  return (
+    <div className="container-fluid fixed-top">
+      <div className="container topbar bg-primary d-none d-lg-block">
+        <div className="d-flex justify-content-between">
+          <div className="top-info ps-2">
+            <small className="me-3">
+              <i className="fas fa-map-marker-alt me-2 text-secondary"></i>
+              <Link href="#" className="text-white">
+                {text('address')}
+              </Link>
+            </small>
+
+            <small className="me-3">
+              <i className="fas fa-envelope me-2 text-secondary"></i>
+              <Link href="mailto:hello@tuliooutlet.shop" className="text-white">
+                hello@tuliooutlet.shop
+              </Link>
+            </small>
+          </div>
+
+          <div className="top-link pe-2">
+            <Link href="/privacy-policy" className="text-white">
+              <small className="text-white mx-2">
+                Privacy Policy
+              </small>
+            </Link>
+            {' / '}
+
+            <Link href="/terms" className="text-white">
+              <small className="text-white mx-2">
+                Terms of Use
+              </small>
+            </Link>
+            {' / '}
+
+            <Link href="/refunds" className="text-white">
+              <small className="text-white ms-2">
+                Sales & Refunds
+              </small>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="container px-0">
+        <nav className="navbar navbar-light bg-white navbar-expand-xl">
+          <Link href="/" className="navbar-brand">
+            <h1 className="text-primary display-6">
+              TuliOutlet
+            </h1>
+          </Link>
+
+          <button
+            className="navbar-toggler py-2 px-3"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+          >
+            <span className="fa fa-bars text-primary"></span>
+          </button>
+
+          <div
+            className="collapse navbar-collapse bg-white"
+            id="navbarCollapse"
+          >
+            <div className="navbar-nav mx-auto">
+              <Link href="/" className="nav-item nav-link">
+                {text('Home')}
+              </Link>
+
+              <Link href="/shop" className="nav-item nav-link">
+                {text('Shop')}
+              </Link>
+
+              <Link href="/shop-detail" className="nav-item nav-link">
+                {text('ShopDetail')}
+              </Link>
+
+              <Link href="/contact" className="nav-item nav-link">
+                {text('Contact')}
+              </Link>
+            </div>
+
+            <div className="d-flex m-3 me-0">
+              <button
+                className="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
+                data-bs-toggle="modal"
+                data-bs-target="#searchModal"
+              >
+                <i className="fas fa-search text-primary"></i>
+              </button>
+              <div className="dropdown me-4 my-auto">
+                <a
+                  href="#"
+                  className="dropdown-toggle text-dark"
+                  data-bs-toggle="dropdown"
+                >
+                  <i className="fas fa-globe fa-2x"></i>
+                </a>
+
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link
+                      className="dropdown-item"
+                      style={{ color: '#000' }}
+                      href="/en"
+                    >
+                      English
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link
+                      className="dropdown-item"
+                      style={{ color: '#000' }}
+                      href="/hi"
+                    >
+                      हिन्दी
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link
+                      className="dropdown-item"
+                      style={{ color: '#000' }}
+                      href="/bn"
+                    >
+                      বাংলা
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <Link
+                href="/cart"
+                className="position-relative me-4 my-auto"
+              >
+                <i className="fa fa-shopping-bag fa-2x"></i>
+
+                <span
+                  className="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
+                  style={{
+                    top: '-5px',
+                    left: '15px',
+                    height: '20px',
+                    minWidth: '20px',
+                  }}
+                >
+                  0
+                </span>
+              </Link>
+
+              <Link href="/en/login" className="my-auto">
+                <i className="fas fa-user fa-2x text-primary"></i>
+              </Link>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  );
+}
+
+
+
+export const ProductCategory = () => {
+    return (
+        <div className="container-fluid service py-2">
+            <div className="container py-2">
+                <div className="row g-4 justify-content-center">
+                    <div className="col-md-6 col-lg-4">
+                        <a href="#">
+                            <div className="service-item bg-secondary rounded border border-secondary">
+                                <img src="/eshop/img/featur-1.jpg" className="img-fluid rounded-top w-100" alt="" />
+                                <div className="px-4 rounded-bottom">
+                                    <div className="service-content bg-primary text-center p-4 rounded">
+                                        <h5 className="text-white">Fresh Apples</h5>
+                                        <h3 className="mb-0">20% OFF</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div className="col-md-6 col-lg-4">
+                        <a href="#">
+                            <div className="service-item bg-dark rounded border border-dark">
+                                <img src="/eshop/img/featur-2.jpg" className="img-fluid rounded-top w-100" alt="" />
+                                <div className="px-4 rounded-bottom">
+                                    <div className="service-content bg-light text-center p-4 rounded">
+                                        <h5 className="text-primary">Tasty Fruits</h5>
+                                        <h3 className="mb-0">Free delivery</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div className="col-md-6 col-lg-4">
+                        <a href="#">
+                            <div className="service-item bg-primary rounded border border-primary">
+                                <img src="/eshop/img/featur-3.jpg" className="img-fluid rounded-top w-100" alt="" />
+                                <div className="px-4 rounded-bottom">
+                                    <div className="service-content bg-secondary text-center p-4 rounded">
+                                        <h5 className="text-white">Exotic Vegitable</h5>
+                                        <h3 className="mb-0">Discount 30$</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export function BannerCategory(){
+    return (
+        <div className="container-fluid banner bg-secondary my-5">
+            <div className="container py-5">
+                <div className="row g-4 align-items-center">
+                    <div className="col-lg-6">
+                        <div className="py-4">
+                            <h1 className="display-3 text-white">Fresh Exotic Fruits</h1>
+                            <p className="fw-normal display-3 text-dark mb-4">in Our Store</p>
+                            <p className="mb-4 text-dark">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.</p>
+                            <a href="#" className="banner-btn btn border-2 border-white rounded-pill text-dark py-3 px-5">BUY</a>
+                        </div>
+                    </div>
+                    <div className="col-lg-6">
+                        <div className="position-relative">
+                            <img src="/eshop/img/baner-1.png" className="img-fluid w-100 rounded" alt="" />
+                            <div className="d-flex align-items-center justify-content-center bg-white rounded-circle position-absolute" style={{width: "140px", height: "140px", top: "0", left: "0"}}>
+                                <h1 style={{fontSize: "100px"}}>1</h1>
+                                <div className="d-flex flex-column">
+                                    <span className="h2 mb-0">50$</span>
+                                    <span className="h4 text-muted mb-0">kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export function ProductRegular(){
+    let products = [];
+    for (let i = 0; i < 9; i++) {
+        products.push(<ProductDaily key={i} />);
+    }
+
+    return (        
+        <div className="container-fluid py-2">
+            <div className="container py-2">
+                <div className="text-center mx-auto mb-5" style={{maxWidth: "700px"}}>
+                    <h1 className="display-4">Daily Products</h1>
+                    <p>Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</p>
+                </div>
+                <div className="row g-4">
+                    {products}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export function TotalSale(){
+    return (        
+        <div className="container-fluid">
+            <div className="container">
+                <div className="bg-light p-5 rounded">
+                    <div className="row g-4 justify-content-center">
+                        <div className="col-md-6 col-lg-6 col-xl-3">
+                            <div className="counter bg-white rounded p-5">
+                                <i className="fa fa-users text-secondary"></i>
+                                <h4>satisfied customers</h4>
+                                <h1>1963</h1>
+                            </div>
+                        </div>
+                        <div className="col-md-6 col-lg-6 col-xl-3">
+                            <div className="counter bg-white rounded p-5">
+                                <i className="fa fa-users text-secondary"></i>
+                                <h4>quality of service</h4>
+                                <h1>99%</h1>
+                            </div>
+                        </div>
+                        <div className="col-md-6 col-lg-6 col-xl-3">
+                            <div className="counter bg-white rounded p-5">
+                                <i className="fa fa-users text-secondary"></i>
+                                <h4>quality certificates</h4>
+                                <h1>33</h1>
+                            </div>
+                        </div>
+                        <div className="col-md-6 col-lg-6 col-xl-3">
+                            <div className="counter bg-white rounded p-5">
+                                <i className="fa fa-users text-secondary"></i>
+                                <h4>Available Products</h4>
+                                <h1>789</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export function Testimonial(){
+    return (        
+        <div className="container-fluid testimonial py-1">
+            <div className="container py-1">
+                <div className="testimonial-header text-center">
+                    <h4 className="text-primary">Our Testimonial</h4>
+                    <h1 className="display-5 mb-5 text-dark">Our Client Saying!</h1>
+                </div>
+                <ComponentTestimonial />
+            </div>
+        </div>
+    );
+}
+
+export function OurService(){
+    return (
+        <>
+            
+            <div className="container-fluid featurs py-5">
+                <div className="container py-5">
+                    <div className="row g-4">
+                        <div className="col-md-6 col-lg-3">
+                            <div className="featurs-item text-center rounded bg-light p-4">
+                                <div className="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                                    <i className="fas fa-car-side fa-3x text-white"></i>
+                                </div>
+                                <div className="featurs-content text-center">
+                                    <h5>Free Shipping</h5>
+                                    <p className="mb-0">Free on order over $300</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-6 col-lg-3">
+                            <div className="featurs-item text-center rounded bg-light p-4">
+                                <div className="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                                    <i className="fas fa-user-shield fa-3x text-white"></i>
+                                </div>
+                                <div className="featurs-content text-center">
+                                    <h5>Security Payment</h5>
+                                    <p className="mb-0">100% security payment</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-6 col-lg-3">
+                            <div className="featurs-item text-center rounded bg-light p-4">
+                                <div className="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                                    <i className="fas fa-exchange-alt fa-3x text-white"></i>
+                                </div>
+                                <div className="featurs-content text-center">
+                                    <h5>30 Day Return</h5>
+                                    <p className="mb-0">30 day money guarantee</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-6 col-lg-3">
+                            <div className="featurs-item text-center rounded bg-light p-4">
+                                <div className="featurs-icon btn-square rounded-circle bg-secondary mb-5 mx-auto">
+                                    <i className="fa fa-phone-alt fa-3x text-white"></i>
+                                </div>
+                                <div className="featurs-content text-center">
+                                    <h5>24/7 Support</h5>
+                                    <p className="mb-0">Support every time fast</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
+
+
+
+
+
+export function ComponentTestimonial(){
+    return (<h1>111</h1>);
+
+    /*
+    useEffect(()=>{
+        
+        $('.owl-dots').css('display', 'none');
+        $('.testi').owlCarousel({
+            autoplay: true,
+            smartSpeed: 2000,
+            center: false,
+            dots: true,
+            loop: true,
+            margin: 25,
+            nav : true,
+            navText : [
+                '<i className="bi bi-arrow-left"></i>',
+                '<i className="bi bi-arrow-right"></i>'
+            ],
+            responsiveClass: true,
+            responsive: {
+                0:{
+                    items:1
+                },
+                576:{
+                    items:1
+                },
+                768:{
+                    items:1
+                },
+                992:{
+                    items:2
+                },
+                1200:{
+                    items:2
+                }
+            }
+        });
+    },[]);
+
+/*
+
+    let arr = [1,2,3,4,5,6,7,8,9,10,11,12];
+
+    return (
+        <div style={{marginTop:"20px"}}>
+            <div className="owl-carousel testi testimonial-carousel">
+                {
+                    arr.map((x)=>{
+                        console.log(888);
+                        return (
+                            <div key={'testimonial'+x} className="testimonial-item img-border-radius bg-light rounded p-4">
+                                <div className="position-relative">
+                                    <i className="fa fa-quote-right fa-2x text-secondary position-absolute" style={{bottom: "30px", right: "0"}}></i>
+                                    <div className="mb-4 pb-4 border-bottom border-secondary">
+                                        <p className="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industrys standard dummy text ever since the 1500s,
+                                        </p>
+                                    </div>
+                                    <div className="d-flex align-items-center flex-nowrap">
+                                        <div className="bg-secondary rounded">
+                                            <img src="/eshop/img/testimonial-1.jpg" className="img-fluid rounded" style={{width: "100px", height: "100px"}} alt="" />
+                                        </div>
+                                        <div className="ms-4 d-block">
+                                            <h4 className="text-dark">Client Name</h4>
+                                            <p className="m-0 pb-3">Profession</p>
+                                            <div className="d-flex pe-5">
+                                                <i className="fas fa-star text-primary"></i>
+                                                <i className="fas fa-star text-primary"></i>
+                                                <i className="fas fa-star text-primary"></i>
+                                                <i className="fas fa-star text-primary"></i>
+                                                <i className="fas fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        )
+                    })
+                }
+            </div>
+        </div>
+    );
+
+
+
+    return (
+        <h1>ComponentTestimonial</h1>
+    );
+
+    return (
+        <div className="owl-carousel testimonial-carousel">
+            <div className="testimonial-item img-border-radius bg-light rounded p-4">
+                <div className="position-relative">
+                    <i className="fa fa-quote-right fa-2x text-secondary position-absolute" style={{bottom: "30px", right: "0"}}></i>
+                    <div className="mb-4 pb-4 border-bottom border-secondary">
+                        <p className="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industrys standard dummy text ever since the 1500s,
+                        </p>
+                    </div>
+                    <div className="d-flex align-items-center flex-nowrap">
+                        <div className="bg-secondary rounded">
+                            <img src="/eshop/img/testimonial-2.jpg" className="img-fluid rounded" style={{width: "100px", height: "100px"}} alt="" />
+                        </div>
+                        <div className="ms-4 d-block">
+                            <h4 className="text-dark">Client Name</h4>
+                            <p className="m-0 pb-3">Profession</p>
+                            <div className="d-flex pe-5">
+                                <i className="fas fa-star text-primary"></i>
+                                <i className="fas fa-star text-primary"></i>
+                                <i className="fas fa-star text-primary"></i>
+                                <i className="fas fa-star text-primary"></i>
+                                <i className="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="testimonial-item img-border-radius bg-light rounded p-4">
+                <div className="position-relative">
+                    <i className="fa fa-quote-right fa-2x text-secondary position-absolute" style={{bottom: "30px", right: "0"}}></i>
+                    <div className="mb-4 pb-4 border-bottom border-secondary">
+                        <p className="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industrys standard dummy text ever since the 1500s,
+                        </p>
+                    </div>
+                    <div className="d-flex align-items-center flex-nowrap">
+                        <div className="bg-secondary rounded">
+                            <img src="/eshop/img/testimonial-1.jpg" className="img-fluid rounded" style={{width: "100px", height: "100px"}} alt="" />
+                        </div>
+                        <div className="ms-4 d-block">
+                            <h4 className="text-dark">Client Name</h4>
+                            <p className="m-0 pb-3">Profession</p>
+                            <div className="d-flex pe-5">
+                                <i className="fas fa-star text-primary"></i>
+                                <i className="fas fa-star text-primary"></i>
+                                <i className="fas fa-star text-primary"></i>
+                                <i className="fas fa-star text-primary"></i>
+                                <i className="fas fa-star text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="testimonial-item img-border-radius bg-light rounded p-4">
+                <div className="position-relative">
+                    <i className="fa fa-quote-right fa-2x text-secondary position-absolute" style={{bottom: "30px", right: "0"}}></i>
+                    <div className="mb-4 pb-4 border-bottom border-secondary">
+                        <p className="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industrys standard dummy text ever since the 1500s,
+                        </p>
+                    </div>
+                    <div className="d-flex align-items-center flex-nowrap">
+                        <div className="bg-secondary rounded">
+                            <img src="/eshop/img/testimonial-1.jpg" className="img-fluid rounded" style={{width: "100px", height: "100px"}} alt="" />
+                        </div>
+                        <div className="ms-4 d-block">
+                            <h4 className="text-dark">Client Name</h4>
+                            <p className="m-0 pb-3">Profession</p>
+                            <div className="d-flex pe-5">
+                                <i className="fas fa-star text-primary"></i>
+                                <i className="fas fa-star text-primary"></i>
+                                <i className="fas fa-star text-primary"></i>
+                                <i className="fas fa-star text-primary"></i>
+                                <i className="fas fa-star text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+    */
+}
+/* */
+
+
+function ProductDaily(){
+    const randNumber = Math.floor(Math.random()* (9 - 0 + 1));
+    const imgName = "eshop/img/p-"+randNumber+".png";
+    console.log('Random Number : '+ randNumber);
+
+    return (
+        <div className="col-lg-6 col-xl-4">
+            <div className="p-4 rounded bg-light">
+                <div className="row align-items-center">
+                    <div className="col-6">
+                        <img src={imgName} className="img-fluid rounded-circle w-100" alt="" />
+                    </div>
+                    <div className="col-6">
+                        <Link href="/product/1" className="h5">Organic Tomato</Link>
+                        <div className="d-flex my-3">
+                            <i className="fas fa-star text-primary"></i>
+                            <i className="fas fa-star text-primary"></i>
+                            <i className="fas fa-star text-primary"></i>
+                            <i className="fas fa-star text-primary"></i>
+                            <i className="fas fa-star"></i>
+                        </div>
+                        <h4 className="mb-3">3.12 $</h4>
+                        <Link href="/product/1" className="btn border border-secondary rounded-pill px-3 text-primary"><i className="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</Link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+
+export default Banner;
