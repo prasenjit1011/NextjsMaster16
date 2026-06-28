@@ -595,7 +595,11 @@ export const ProductList = () =>{
 
 
 
-function Product({boxClassName}){
+interface ProductProps {
+    boxClassName: string;
+}
+
+function Product({ boxClassName }: ProductProps) {
     const randNumber = Math.floor(Math.random()* (9 - 0 + 1));
     const imgName = "../eshop/img/best-product-"+randNumber+".jpg";
 
