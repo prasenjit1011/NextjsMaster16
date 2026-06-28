@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { getLocale, getTranslations } from 'next-intl/server';
 import LanguageSwitcher from './LanguageSwitcher';
-import { ComponentTestimonial } from './EshopClientComponent';
+// import { ComponentTestimonial } from './EshopClientComponent';
 
 const languages = [
   { code: "en", name: "English", flag: "🇬🇧", href: "/en" },
@@ -378,17 +378,18 @@ export function TotalSale(){
 }
 
 export function Testimonial(){
-    return (        
-        <div className="container-fluid testimonial py-1">
-            <div className="container py-1">
-                <div className="testimonial-header text-center">
-                    <h4 className="text-primary">Our Testimonial</h4>
-                    <h1 className="display-5 mb-5 text-dark">Our Client Saying!</h1>
-                </div>
-                <ComponentTestimonial />
-            </div>
-        </div>
-    );
+    return <></>
+    // return (        
+    //     <div className="container-fluid testimonial py-1">
+    //         <div className="container py-1">
+    //             <div className="testimonial-header text-center">
+    //                 <h4 className="text-primary">Our Testimonial</h4>
+    //                 <h1 className="display-5 mb-5 text-dark">Our Client Saying!</h1>
+    //             </div>
+    //             <ComponentTestimonial />
+    //         </div>
+    //     </div>
+    // );
 }
 
 export function OurService(){
