@@ -21,6 +21,8 @@
     "address":"230, Udyog Vihar Phase IV, Sector 18 Gurugram - 122015",
     "Shop": "Shop",
     "ShopDetail": "Shop Detail",
-    "Contact": "Contact"
+    "Contact": "Contact",
+    "Product":"Product",
+    "Service":"Services"
   }
 }

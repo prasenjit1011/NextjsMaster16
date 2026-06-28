@@ -21,7 +21,8 @@
     "address":"230, उद्योग विहार फेज IV, सेक्टर 18, गुरुग्राम - 122015",
     "Shop": "दुकान",
     "ShopDetail": "दुकान विवरण",
-    "Contact": "संपर्क"
-
+    "Contact": "संपर्क",
+    "Product":"Product",
+    "Service":"Services"
   }
 }

@@ -21,6 +21,8 @@
     "address":"২৩০, উদ্যোগ বিহার ফেজ IV, সেক্টর ১৮, গুরুগ্রাম - ১২২০১৫",
     "Shop": "দোকান",
     "ShopDetail": "দোকানের বিবরণ",
-    "Contact": "যোগাযোগ"
+    "Contact": "যোগাযোগ",
+    "Product":"Product",
+    "Service":"Services"
   }
 }

@@ -1,28 +1,8 @@
-"use client";
-import { useEffect, useState } from "react";
-import ProductTable from "@/components/ProductTable";
-import Link from "next/link";
+import { BannerCategory, ProductListing, ProductList, OurService, ProductCategory, ProductRegular, Testimonial, TotalSale } from '../../components/EshopComponents';
 
-export default function Page(){
-  const [data,setData]=useState([]);
 
-  const load=async()=>{
-    const res=await fetch("/api/product");
-    setData(await res.json());
-  };
-
-  useEffect(()=>{load();},[]);
-
-  const del=async(id)=>{
-    await fetch(`/api/product/${id}`,{method:"DELETE"});
-    load();
-  };
-
+export default function ProductListingPage(){
   return (
-    <div>
-      <h2>Products</h2>
-      <Link href="/product/create">Add</Link>
-      <ProductTable products={data} onDelete={del}/>
-    </div>
+    <ProductListing />
   );
 }
