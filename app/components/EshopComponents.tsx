@@ -55,7 +55,7 @@ const BannerHome =  async () => {
                         <h4 className="mb-3 text-secondary">{text('100OrganicFoods')}</h4>
                         <h1 className="mb-5 display-3 text-primary">{text('OrganicVeggiesFruitsFoods')}</h1>
                         <div className="position-relative mx-auto">
-                            <input className="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill" type="number" placeholder="{text('Search')}" />
+                            <input className="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill" type="number" placeholder={text('Search')} />
                             <button type="submit" className="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100" style={{top:" 0", right:" 25%"}}>{text('SubmitNow')}</button>
                         </div>
                     </div>
