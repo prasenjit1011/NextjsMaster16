@@ -1,8 +1,13 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
+import LanguageSwitcher from './LanguageSwitcher';
 
-//import { useEffect } from 'react';
+const languages = [
+  { code: "en", name: "English", flag: "🇬🇧", href: "/en" },
+  { code: "bn", name: "বাংলা", flag: "🇧🇩", href: "/bn" },
+  { code: "hi", name: "हिन्दी", flag: "🇮🇳", href: "/hi" },
+];
 
 const Banner = ({pageTitle}) => {
     if(pageTitle === 'Home'){
@@ -92,6 +97,9 @@ export const Footer = () => {
 export const NewNavBar = async () => {
     //const text = useTranslations('HomePage');
     const text = await getTranslations('HomePage');
+    const locale = await getLocale();
+    // const pathname = usePathname();
+    const selectedLanguage = languages.find((lang) => lang.code === locale) || languages[0];
 
   return (
     <div className="container-fluid fixed-top">
@@ -175,7 +183,6 @@ export const NewNavBar = async () => {
                 {text('Contact')}
               </Link>
             </div>
-
             <div className="d-flex m-3 me-0">
               <button
                 className="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
@@ -185,46 +192,10 @@ export const NewNavBar = async () => {
                 <i className="fas fa-search text-primary"></i>
               </button>
               <div className="dropdown me-4 my-auto">
-                <a
-                  href="#"
-                  className="dropdown-toggle text-dark"
-                  data-bs-toggle="dropdown"
-                >
-                  <i className="fas fa-globe fa-2x"></i>
-                </a>
+                
 
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      style={{ color: '#000' }}
-                      href="/en"
-                    >
-                      English
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      style={{ color: '#000' }}
-                      href="/hi"
-                    >
-                      हिन्दी
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      style={{ color: '#000' }}
-                      href="/bn"
-                    >
-                      বাংলা
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+                <LanguageSwitcher />
+                </div>
               <Link
                 href="/cart"
                 className="position-relative me-4 my-auto"
@@ -244,7 +215,9 @@ export const NewNavBar = async () => {
                 </span>
               </Link>
 
-              <Link href="/en/login" className="my-auto">
+
+              
+              <Link href="/dashboard" className="my-auto">
                 <i className="fas fa-user fa-2x text-primary"></i>
               </Link>
             </div>
