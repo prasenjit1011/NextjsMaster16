@@ -1,19 +1,20 @@
-import './style.css';
+import '../public/eshop/css/bootstrap.min.css';
+import '../public/eshop/css/style.css';
+
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: {
-    default: 'My Next Application',
-    template: '%s | My Application'
+    default: 'Fruitables',
+    template: '%s | Fruitables',
   },
-  description: 'Modern Next.js Application'
+  description: 'Fresh products delivered to your doorstep',
 };
 
-
 export default async function RootLayout({
-  children
+  children,
 }: {
   children: React.ReactNode;
 }) {

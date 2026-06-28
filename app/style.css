@@ -1,4 +1,5 @@
-    * {
+/* 
+* {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -14,7 +15,6 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 5%;
-      /* background: #1f2937; */
       color: white;
     }
 
@@ -91,7 +91,7 @@ body{
     min-height:100vh;
 }
 
-/* Header */
+
 header{
     background:rgba(255,255,255,0.12);
     backdrop-filter:blur(12px);
@@ -125,7 +125,7 @@ nav a:hover{
     color:#5849ac;
 }
 
-/* Main */
+
 .container{
     min-height:calc(100vh - 80px);
     display:flex;
@@ -134,7 +134,7 @@ nav a:hover{
     padding:30px;
 }
 
-/* Login Card */
+
 .login-card{
     width:400px;
     background:rgba(255,255,255,0.15);
@@ -191,7 +191,6 @@ nav a:hover{
 
 button{
     width:100%;
-    /* padding:14px; */
     border:none;
     border-radius:10px;
     background:#ffd369;
@@ -235,4 +234,4 @@ button:hover{
         width:100%;
         max-width:400px;
     }
-}
+} */
