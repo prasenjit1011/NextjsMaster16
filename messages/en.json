@@ -1,6 +1,6 @@
 {
   "HomePage": {
-    "title": "Welcome",
+    "title": "Welcome123",
     "description": "Create modern web applications with scalable architecture and outstanding user experiences.",
     "counterPage": "Button click count",
     "Home": "Home",
@@ -16,6 +16,7 @@
     "Company": "Company",
     "Hydration": "Hydration",
     "Error": "Error",
-    "More": "More"
+    "More": "More",
+    "Getintouch": "Get in touch"
   }
 }

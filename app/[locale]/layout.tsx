@@ -24,6 +24,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           <NewNavBar />
           <Banner />
           {children}
+          <Footer />
           </div>
         </ReduxProvider>
   );
@@ -71,6 +72,21 @@ const Banner = () => {
   );
 }
 
+const Footer = () => {
+    return (
+        <div className="container-fluid copyright bg-dark py-4">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <span className="text-light"><a href="#"><i className="fas fa-copyright text-light me-2"></i>TuliOutlet</a>, All right reserved.</span>
+                    </div>
+                    <div className="col-md-6 my-auto text-center text-md-end text-white">
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
 
 const NewNavBar = async () => {
   return (
@@ -268,6 +284,28 @@ const NavBar = async () => {
     </header>
   );
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 export default RootLayout;
