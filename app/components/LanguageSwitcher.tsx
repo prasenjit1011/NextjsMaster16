@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useLocale } from 'next-intl';
 
 const languages = [
+  { code: "ar", name: "العربية", flag: "🇸🇦" },
   { code: 'en', name: 'English', flag: '🇬🇧' },
   { code: 'hi', name: 'हिन्दी', flag: '🇮🇳' },
   { code: 'bn', name: 'বাংলা', flag: '🇧🇩' },

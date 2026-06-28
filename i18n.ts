@@ -1,3 +1,3 @@
-export const locales = ['en', 'bn', 'hi'];
+export const locales = ['ar','en', 'bn', 'hi'];
 
-export const defaultLocale = 'hi';
+export const defaultLocale = 'ar';
