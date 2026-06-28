@@ -42,17 +42,20 @@ const Banner = ({ pageTitle }: BannerProps) => {
     );
 }
 
-const BannerHome = () =>{
+const BannerHome =  async () => {
+    //const text = useTranslations('HomePage');
+    const text = await getTranslations('HomePage');
+
     return (
         <div className="container-fluid py-5 mb-5 hero-header">
             <div className="container py-5">
                 <div className="row g-5 align-items-center">
                     <div className="col-md-12 col-lg-7">
-                        <h4 className="mb-3 text-secondary">100% Organic Foods</h4>
-                        <h1 className="mb-5 display-3 text-primary">Organic Veggies & Fruits Foods</h1>
+                        <h4 className="mb-3 text-secondary">{text('100OrganicFoods')}</h4>
+                        <h1 className="mb-5 display-3 text-primary">{text('OrganicVeggiesFruitsFoods')}</h1>
                         <div className="position-relative mx-auto">
-                            <input className="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill" type="number" placeholder="Search" />
-                            <button type="submit" className="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100" style={{top:" 0", right:" 25%"}}>Submit Now</button>
+                            <input className="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill" type="number" placeholder="{text('Search')}" />
+                            <button type="submit" className="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100" style={{top:" 0", right:" 25%"}}>{text('SubmitNow')}</button>
                         </div>
                     </div>
                     <div className="col-md-12 col-lg-5">
@@ -60,20 +63,20 @@ const BannerHome = () =>{
                             <div className="carousel-inner" role="listbox">
                                 <div className="carousel-item active rounded">
                                     <img src="/eshop/img/hero-img-1.png" className="img-fluid w-100 h-100 bg-secondary rounded" alt="First slide" />
-                                    <a href="#" className="btn px-4 py-2 text-white rounded">Fruites</a>
+                                    <a href="#" className="btn px-4 py-2 text-white rounded">{text('Fruites')}</a>
                                 </div>
                                 <div className="carousel-item rounded">
                                     <img src="/eshop/img/hero-img-2.jpg" className="img-fluid w-100 h-100 rounded" alt="Second slide" />
-                                    <a href="#" className="btn px-4 py-2 text-white rounded">Vesitables</a>
+                                    <a href="#" className="btn px-4 py-2 text-white rounded">{text('Vesitables')}</a>
                                 </div>
                             </div>
                             <button className="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
                                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span className="visually-hidden">Previous</span>
+                                <span className="visually-hidden">{text('Previous')}</span>
                             </button>
                             <button className="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
                                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span className="visually-hidden">Next</span>
+                                <span className="visually-hidden">{text('Next')}</span>
                             </button>
                         </div>
                     </div>
@@ -130,21 +133,21 @@ export const NewNavBar = async () => {
           <div className="top-link pe-2">
             <Link href="/privacy-policy" className="text-white">
               <small className="text-white mx-2">
-                Privacy Policy
+                {text('PrivacyPolicy')}
               </small>
             </Link>
             {' / '}
 
             <Link href="/terms" className="text-white">
               <small className="text-white mx-2">
-                Terms of Use
+                {text('TermsofUse')}
               </small>
             </Link>
             {' / '}
 
             <Link href="/refunds" className="text-white">
               <small className="text-white ms-2">
-                Sales & Refunds
+                {text('SalesRefunds')}
               </small>
             </Link>
           </div>
@@ -155,7 +158,7 @@ export const NewNavBar = async () => {
         <nav className="navbar navbar-light bg-white navbar-expand-xl">
           <Link href="/" className="navbar-brand">
             <h1 className="text-primary display-6">
-              TuliOutlet
+              {text('TuliOutlet')}
             </h1>
           </Link>
 
@@ -239,7 +242,10 @@ export const NewNavBar = async () => {
 
 
 
-export const ProductCategory = () => {
+export const ProductCategory = async () => {
+    //const text = useTranslations('HomePage');
+    const text = await getTranslations('HomePage');
+
     return (
         <div className="container-fluid service py-2">
             <div className="container py-2">
@@ -250,8 +256,8 @@ export const ProductCategory = () => {
                                 <img src="/eshop/img/featur-1.jpg" className="img-fluid rounded-top w-100" alt="" />
                                 <div className="px-4 rounded-bottom">
                                     <div className="service-content bg-primary text-center p-4 rounded">
-                                        <h5 className="text-white">Fresh Apples</h5>
-                                        <h3 className="mb-0">20% OFF</h3>
+                                        <h5 className="text-white">{text('FreshApples')}</h5>
+                                        <h3 className="mb-0">{text('20OFF')}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -263,8 +269,8 @@ export const ProductCategory = () => {
                                 <img src="/eshop/img/featur-2.jpg" className="img-fluid rounded-top w-100" alt="" />
                                 <div className="px-4 rounded-bottom">
                                     <div className="service-content bg-light text-center p-4 rounded">
-                                        <h5 className="text-primary">Tasty Fruits</h5>
-                                        <h3 className="mb-0">Free delivery</h3>
+                                        <h5 className="text-primary">{text('TastyFruits')}</h5>
+                                        <h3 className="mb-0">{text('Freedelivery')}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -276,8 +282,8 @@ export const ProductCategory = () => {
                                 <img src="/eshop/img/featur-3.jpg" className="img-fluid rounded-top w-100" alt="" />
                                 <div className="px-4 rounded-bottom">
                                     <div className="service-content bg-secondary text-center p-4 rounded">
-                                        <h5 className="text-white">Exotic Vegitable</h5>
-                                        <h3 className="mb-0">Discount 30$</h3>
+                                        <h5 className="text-white">{text('ExoticVegitable')}</h5>
+                                        <h3 className="mb-0">{text('Discount30')}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -289,16 +295,20 @@ export const ProductCategory = () => {
     );
 }
 
-export function BannerCategory(){
+export const BannerCategory = async () => {
+    //const text = useTranslations('HomePage');
+    const text = await getTranslations('HomePage');
+
+
     return (
         <div className="container-fluid banner bg-secondary my-5">
             <div className="container py-5">
                 <div className="row g-4 align-items-center">
                     <div className="col-lg-6">
                         <div className="py-4">
-                            <h1 className="display-3 text-white">Fresh Exotic Fruits</h1>
+                            <h1 className="display-3 text-white">{text('FreshExoticFruits')}</h1>
                             <p className="fw-normal display-3 text-dark mb-4">in Our Store</p>
-                            <p className="mb-4 text-dark">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.</p>
+                            <p className="mb-4 text-dark">{text('content01')}</p>
                             <a href="#" className="banner-btn btn border-2 border-white rounded-pill text-dark py-3 px-5">BUY</a>
                         </div>
                     </div>
@@ -320,7 +330,10 @@ export function BannerCategory(){
     );
 }
 
-export function ProductRegular(){
+export const ProductRegular = async () => {
+    //const text = useTranslations('HomePage');
+    const text = await getTranslations('HomePage');
+
     let products = [];
     for (let i = 0; i < 9; i++) {
         products.push(<ProductDaily key={i} />);
@@ -330,8 +343,8 @@ export function ProductRegular(){
         <div className="container-fluid py-2">
             <div className="container py-2">
                 <div className="text-center mx-auto mb-5" style={{maxWidth: "700px"}}>
-                    <h1 className="display-4">Daily Products</h1>
-                    <p>Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</p>
+                    <h1 className="display-4">{text('DailyProducts')}</h1>
+                    <p>{text('content02')}</p>
                 </div>
                 <div className="row g-4">
                     {products}
