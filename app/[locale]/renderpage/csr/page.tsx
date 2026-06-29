@@ -22,10 +22,21 @@ export default function Page() {
   if (!data) return <p>Loading...</p>;
 
   return (
-    <div>
-      <h1>Client Side Rendering(CSR) Page : {Math.floor(Math.random() * 100)} : {new Date().toLocaleTimeString()}</h1>
-      <h3><b>Browser loads page first, After that JavaScript fetches data in client side.</b></h3>
-      <p><b>{data?.title.toUpperCase()}</b></p>
-    </div>
+    <>
+      <div className="!ml-[30px] !mt-[30px] text-black">
+        <h4 className="text-2xl font-bold mb-8">
+          🚀 Client Side Rendering(CSR)
+        </h4>
+        <div className="space-y-4 text-lg">
+          <p className="font-semibold">🔄 User-specific</p>
+          <p className="font-semibold">🔄 Highly interactive</p>
+          <p className="font-semibold">🔄 Not dependent on SEO</p>
+          <p className="font-semibold">🔄 Updated frequently on the client</p>
+          <p> Page : {Math.floor(Math.random() * 100)} : {new Date().toLocaleTimeString()}</p>
+          <p><b>Browser loads page first, After that JavaScript fetches data in client side.</b></p>
+          <p><b>{data?.title.toUpperCase()}</b></p>
+        </div>
+      </div>
+    </>
   );
 }
