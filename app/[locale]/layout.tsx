@@ -56,31 +56,10 @@ const NavBar = async () => {
       <nav className="navbar">
         <Link href="/">{text('Home')}</Link>
         <Link href="/aboutus">{text('About Us')}</Link>
-        <Link href="/category">{text('Category')}</Link>
-
-        {/* Render Dropdown */}
-        <div className="dropdown">
-          <span className="dropdown-btn">{text('Render')} ▼</span>
-
-          <div className="dropdown-content">
-            <Link href="/renderpage/ssr">{text('SSR')}</Link>
-            <Link href="/renderpage/ssg">{text('SSG')}</Link>
-            <Link href="/renderpage/isr">{text('ISR')}</Link>
-            <Link href="/renderpage/csr">{text('CSR')}</Link>
-          </div>
-        </div>
+        <Link href="/category/item">{text('Catalog')}</Link>
 
         
-        <div className="dropdown">
-          <span className="dropdown-btn">{text('More')} ▼</span>
-          <div className="dropdown-content">            
-            <Link href="/company">{text('Company')}</Link>
-            <Link href="/category/item">{text('Item')}</Link>
-            <Link href="/hydration">{text('Hydration')}</Link>
-            <Link href="/error">{text('Error')}</Link>
-          </div>
-        </div>
-
+        
 
 
 

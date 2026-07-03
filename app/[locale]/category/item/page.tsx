@@ -2,8 +2,12 @@ import Image from "next/image";
 import "./item.css";
 
 const url = 'https://dummyjson.com/products'
+const url1 = 'http://localhost:3001/api/items';
 // const url = 'https://fakestoreapi.com/products'
 async function getProducts() {
+
+  console.log('My API URL:', url);
+
   try {
     const res = await fetch(url, {
       cache: "no-store",
@@ -27,9 +31,44 @@ async function getProducts() {
     }
 
     const data = await res.json();
+    
+
+
+    const res1 = await fetch(url1, {
+      cache: "no-store",
+      headers: {
+        Accept: "application/json",
+        "User-Agent": "Mozilla/5.0",
+      },
+    });
+
+    if (!res1.ok) {
+      const errorBody1 = await res1.text();
+      console.error('Error fetching from local API:', res1.status, res1.statusText, errorBody1);
+      return {
+        products: [],
+        error: {
+          status: res1.status,
+          statusText: res1.statusText,
+          body: errorBody1,
+        },
+      };
+    }
+
+    const data1 = await res1.json();
+    console.log(data1['data']);
+
+
+
+
+
+
+
+
+
 
     return {
-      products:data['products'],
+      products:data1['data'] || [],
       error: null,
     };
   } catch (error) {
@@ -109,8 +148,8 @@ export default async function ItemPage() {
             >
               <div className="image-wrapper">
                 <Image
-                  src={product.thumbnail}
-                  alt={product.title}
+                  src='https://cdn.dummyjson.com/product-images/groceries/ice-cream/thumbnail.webp'
+                  alt={product.name}
                   fill
                   sizes="300px"
                   className="product-image"
@@ -118,16 +157,16 @@ export default async function ItemPage() {
               </div>
 
               <div className="product-content">
-                <span className="category-badge">
+                {/*<span className="category-badge">
                   {product.category}
-                </span>
+                </span>*/}
+{}
+                <h3>{product.name}</h3>
 
-                <h3>{product.title}</h3>
-
-                <p>
+                {/*<p>
                   {product.description.slice(0, 90)}
                   ...
-                </p>
+                </p>*/}
 
                 <div className="product-footer">
                   <span className="price">

@@ -16,6 +16,17 @@
     "Company": "कंपनी",
     "Hydration": "हाइड्रेशन",
     "Error": "त्रुटि",    
-    "More": "More"
+    "More": "More",
+    "Loading": "लोड हो रहा है...",
+    "ErrorMessage": "कुछ गलत हो गया। कृपया बाद में पुनः प्रयास करें।",
+    "ProductList": "उत्पाद सूची",
+    "ProductDetails": "उत्पाद विवरण",
+    "ProductName": "उत्पाद का नाम",
+    "ProductDescription": "उत्पाद विवरण",
+    "ProductPrice": "उत्पाद की कीमत",
+    "ProductCategory": "उत्पाद श्रेणी",
+    "ProductImage": "उत्पाद छवि",
+    "Catalog": "कैटलॉग",
+    "ViewDetails": "विवरण देखें"
   }
 }

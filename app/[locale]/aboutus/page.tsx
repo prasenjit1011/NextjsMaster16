@@ -1,76 +1,171 @@
-import styles from "./aboutus.module.css"
+import styles from "./aboutus.module.css";
 import Counter from "../../components/Counter";
 
 export const metadata = {
   title: "About Us",
-  description: "Learn more about our mission, expertise, and technology solutions.",
+  description:
+    "Learn more about our mission, expertise, and technology solutions.",
 };
+
+const skills = {
+  Backend: [
+    "Node.js",
+    "NestJS",
+    "Express.js",
+    "TypeScript",
+    "Java",
+    "Spring Boot",
+    "PHP/Laravel",
+  ],
+  Frontend: [
+    "React.js",
+    "Next.js",
+    "Redux",
+    "JavaScript",
+    "HTML5",
+    "CSS3",
+  ],
+  Databases: ["MongoDB", "PostgreSQL", "MySQL", "Redis"],
+  "Cloud & DevOps": [
+    "AWS",
+    "GCP",
+    "Azure",
+    "Docker",
+    "Kubernetes",
+    "GitHub Actions",
+    "Nginx",
+  ],
+};
+
+const highlights = [
+  "Architected scalable enterprise applications across multiple industries.",
+  "Designed secure REST APIs and microservices.",
+  "Built high-performance backend systems with Node.js & NestJS.",
+  "Implemented CI/CD pipelines and cloud-native deployments.",
+  "Collaborated with global cross-functional teams.",
+];
+
+const focus = [
+  "Node.js & NestJS",
+  "Spring Boot",
+  "React & Next.js",
+  "Microservices",
+  "Cloud Architecture",
+  "System Design",
+];
 
 export default function Aboutus() {
   return (
     <main className={styles.container}>
-      <section>
-        <h1>About Us</h1>
+      {/* Hero */}
+      <section className={styles.hero}>
+        <div className={styles.avatar}>PA</div>
+
+        <h1>Prasenjit Aluni</h1>
+
+        <h2>
+          Senior Full Stack Engineer
+          <span>Node.js • NestJS • Spring Boot • React • Next.js</span>
+        </h2>
 
         <p>
-          Welcome to our digital innovation hub. We specialize in building
-          scalable, high-performance web applications and cloud-native solutions
-          that help businesses transform their ideas into successful products.
+          Designing scalable, secure and high-performance software solutions
+          for modern businesses.
+        </p>
+
+        <div className={styles.buttons}>
+          <a href="mailto:prasenjit9011@gmail.com">Email</a>
+
+          <a
+            href="https://react-cloudrun-334684044157.asia-south1.run.app/"
+            target="_blank"
+          >
+            Portfolio
+          </a>
+
+          <a
+            href="https://j4t3c8u9u1.execute-api.us-east-1.amazonaws.com/"
+            target="_blank"
+          >
+            Services
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/prasenjit1011/"
+            target="_blank"
+          >
+            LinkedIn
+          </a>
+
+          <a
+            href="https://github.com/prasenjit1011/prasenjit1011/blob/main/Resume.pdf"
+            target="_blank"
+          >
+            Resume
+          </a>
+        </div>
+      </section>
+
+
+      {/* About */}
+      <section className={styles.card}>
+        <h3>About Me</h3>
+
+        <p>
+          Senior Full Stack Engineer with extensive experience in designing,
+          developing and delivering enterprise-grade applications.
         </p>
 
         <p>
-          Our expertise spans modern frontend and backend technologies,
-          including Next.js, React, Node.js, NestJS, FastAPI, and cloud
-          platforms such as Google Cloud Platform (GCP). We focus on creating
-          secure, maintainable, and user-friendly applications that deliver
-          exceptional experiences.
+          Specialized in scalable backend development using Node.js, NestJS,
+          Spring Boot and Laravel while creating modern frontend experiences
+          with React and Next.js.
         </p>
+      </section>
 
-        <h2>What We Do</h2>
-        <ul>
-          <li>Modern Web Application Development</li>
-          <li>REST API & Microservice Architecture</li>
-          <li>Cloud Deployment & DevOps Automation</li>
-          <li>Multilingual and Internationalized Applications</li>
-          <li>Database Design & Performance Optimization</li>
-          <li>AI & Generative AI Integration</li>
-          <li>Enterprise Software Solutions</li>
+      {/* Skills */}
+      <section className={styles.card}>
+        <h3>Technology Stack</h3>
+
+        <div className={styles.grid}>
+          {Object.entries(skills).map(([title, items]) => (
+            <div key={title} className={styles.skillCard}>
+              <h4>{title}</h4>
+
+              <div className={styles.tags}>
+                {items.map((item) => (
+                  <span key={item}>{item}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Highlights */}
+      <section className={styles.card}>
+        <h3>Professional Highlights</h3>
+
+        <ul className={styles.list}>
+          {highlights.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
         </ul>
+      </section>      
 
-        <h2>Our Technology Stack</h2>
+      {/* Contact */}
+      <section className={styles.contact}>
+        <h3>Let's Connect</h3>
+
         <p>
-          We leverage industry-leading technologies to build reliable and
-          future-ready solutions:
+          📧 prasenjit9011@gmail.com
+          <br />
+          📍 Kolkata, India
+          <br />
+          💼 Remote • Hybrid • Relocation
         </p>
 
-        <ul>
-          <li>Frontend: Next.js, React, TypeScript, Redux</li>
-          <li>Backend: Node.js, NestJS, FastAPI, Python</li>
-          <li>Databases: PostgreSQL, MySQL, MongoDB</li>
-          <li>Cloud: Google Cloud Run, GKE, Docker</li>
-          <li>CI/CD: GitHub Actions, Automated Deployments</li>
-          <li>AI: LangChain, LLM Applications, AI Automation</li>
-        </ul>
-
-        <h2>Our Mission</h2>
-        <p>
-          Our mission is to empower businesses and developers with innovative,
-          scalable, and intelligent technology solutions. We believe in writing
-          clean code, embracing modern architecture, and continuously learning
-          to stay ahead in the rapidly evolving technology landscape.
-        </p>
-
-        <h2>Why Choose Us?</h2>
-        <ul>
-          <li>Performance-focused development</li>
-          <li>Scalable cloud architecture</li>
-          <li>Clean and maintainable code</li>
-          <li>Modern development practices</li>
-          <li>Security-first approach</li>
-          <li>Continuous innovation and learning</li>
-        </ul>
-
-        <Counter pageName="About Us" />
+        <h4>Building software that is scalable, maintainable and impactful.</h4>
       </section>
     </main>
   );

@@ -1,6 +1,8 @@
 
+import { increment } from '@/features/counterSlice';
 import Counter from '../components/Counter';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 export default function Home() {
   const text = useTranslations('HomePage');
@@ -12,7 +14,10 @@ export default function Home() {
 
         <p>{text('description')}</p>
 
-        <Counter pageName={text('counterPage')} />
+
+        <Link href="/category/item" className="btn" >
+          Get Started
+        </Link>
       </section>
       
 

@@ -6,11 +6,11 @@ import { useRouter } from 'next/navigation';
 
 const LoginPage = () =>{
   // const locale = await getLocale();
-  const [email, setEmail] = useState('admin@test.com');
-  const [password, setPassword] = useState('123456');
+  const [email, setEmail] = useState('admin');
+  const [password, setPassword] = useState('admin');
   const [logStatus, setLogStatus] = useState(0)
   const router = useRouter();
-  const obj = {email, password};
+  const obj = {username:email, password};
   const payload = JSON.stringify(obj);
   const bodyData  = {method: 'POST',body: payload, headers: {'Content-Type': 'application/json'}};
 
