@@ -23,13 +23,21 @@ export async function POST(req: Request) {
       );
     }
 
+    console.log('Backend response 456:', data.access_token);
+
     // ✅ Set cookie from backend token
+    const isProd = false;//process.env.NODE_ENV === 'production';
     return new Response(JSON.stringify({ message: 'Login success' }), {
       status: 200,
       headers: {
-        'Set-Cookie': `token=${data.token}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=86400`,
+        'Set-Cookie': `token=${data.access_token}; Path=/; HttpOnly; ${
+          isProd ? 'Secure;' : ''
+        } SameSite=Lax; Max-Age=86400`,
       },
     });
+
+
+
   } catch (err) {
     return Response.json({ message: 'Server error' }, { status: 500 });
   }

@@ -5,8 +5,8 @@ import styles from './products.module.css';
 
 const API_URL = 'http://localhost:3001/api/items';
 
-export default function DashboardPage() {
-  const [products, setProducts] = useState([]);
+export default function ProductPage() {
+  const [products, setProducts] = useState<any[]>([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -18,6 +18,7 @@ export default function DashboardPage() {
         `${API_URL}?search=${encodeURIComponent(keyword)}&page=1&limit=10`,
         {
           cache: 'no-store',
+          credentials: 'include',
           headers: {
             Accept: 'application/json',
           },
@@ -25,7 +26,6 @@ export default function DashboardPage() {
       );
 
       const json = await res.json();
-
       setProducts(json.data || []);
     } catch (error) {
       console.error(error);
@@ -39,29 +39,35 @@ export default function DashboardPage() {
     loadProducts();
   }, []);
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearch(value);
     loadProducts(value);
   };
 
-  const handleEdit = (item) => {
+  const handleEdit = (item: any) => {
     alert(`Edit Product : ${item.name}`);
   };
 
-  const handleDelete = async (id) => {
-    const ok = confirm('Delete this product?');
-
-    if (!ok) return;
+  const handleDelete = async (id: number) => {
+    if (!confirm('Delete this product?')) return;
 
     try {
-      await fetch(`${API_URL}/${id}`, {
+      const response = await fetch(`${API_URL}/${id}`, {
         method: 'DELETE',
+        credentials: 'include',
+        headers: {
+          Accept: 'application/json',
+        },
       });
 
-      loadProducts(search);
-    } catch (err) {
-      console.error(err);
+      if (response.ok) {
+        loadProducts(search);
+      } else {
+        console.error(await response.text());
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 

@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 export default function DashboardPage() {
@@ -47,7 +48,11 @@ export default function DashboardPage() {
           <div style={styles.statCard}>
             <h3 style={styles.cardTitle}>Products</h3>
             <h2 style={styles.cardValue}>142</h2>
-            <p style={styles.cardInfo}>Active products</p>
+            <p style={styles.cardInfo}>
+              <Link href="/admin/products" style={{ color: '#10b981', textDecoration: 'underline' }}>
+                View Products
+              </Link>
+            </p>
           </div>
         </div>
 
