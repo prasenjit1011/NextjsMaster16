@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import "./item.css";
+import AddToCartButton from "@/app/components/AddToCartButton";
 
 const API_URL = "http://localhost:3001/api/items";
 
@@ -144,9 +145,17 @@ export default async function ItemPage() {
                     View Details
                   </Link>
 
-                  <button className="cart-btn">
-                    🛒 Add to Cart
-                  </button>
+                  <AddToCartButton
+                    product={{
+                      id: product.id,
+                      name: product.name,
+                      description: product.description,
+                      sku: product.sku,
+                      price: product.price,
+                      image:
+                        "https://cdn.dummyjson.com/product-images/groceries/ice-cream/thumbnail.webp",
+                    }}
+                  />
                 </div>
               </div>
             </article>

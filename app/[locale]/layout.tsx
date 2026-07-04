@@ -64,11 +64,8 @@ const NavBar = async () => {
         <Link href="/">{text('Home')}</Link>
         <Link href="/aboutus">{text('About Us')}</Link>
         <Link href="/category/item">{text('Catalog')}</Link>
-
+        <Link href="/cart">{text('Cart')}</Link>
         <Link href="/dashboard">{text('Dashboard')}</Link>
-
-
-
         
         {/* Language Dropdown */}
         <div className="language-dropdown">

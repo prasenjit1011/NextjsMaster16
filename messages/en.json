@@ -18,6 +18,9 @@
     "Error": "Error",
     "More": "More",
     "Catalog": "Catalog",
-    "Loading": "Loading..."
+    "Loading": "Loading...",
+    "Cart": "Cart",
+    "ErrorMessage": "Something went wrong. Please try again later.",
+    "ProductList": "Product List"
   }
 }

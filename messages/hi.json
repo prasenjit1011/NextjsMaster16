@@ -27,6 +27,8 @@
     "ProductCategory": "उत्पाद श्रेणी",
     "ProductImage": "उत्पाद छवि",
     "Catalog": "कैटलॉग",
-    "ViewDetails": "विवरण देखें"
+    "ViewDetails": "विवरण देखें",
+    "AddToCart": "कार्ट में जोड़ें",
+    "Cart": "कार्ट"
   }
 }
