@@ -1,74 +1,33 @@
 import Image from "next/image";
+import Link from "next/link";
 import "./item.css";
 
-const url = 'https://dummyjson.com/products'
-const url1 = 'http://localhost:3001/api/items';
-// const url = 'https://fakestoreapi.com/products'
+const API_URL = "http://localhost:3001/api/items";
+
 async function getProducts() {
-
-  console.log('My API URL:', url);
-
   try {
-    const res = await fetch(url, {
+    const res = await fetch(API_URL, {
       cache: "no-store",
       headers: {
         Accept: "application/json",
-        "User-Agent": "Mozilla/5.0",
       },
     });
 
     if (!res.ok) {
-      const errorBody = await res.text();
-
       return {
         products: [],
         error: {
           status: res.status,
           statusText: res.statusText,
-          body: errorBody,
+          body: await res.text(),
         },
       };
     }
 
-    const data = await res.json();
-    
-
-
-    const res1 = await fetch(url1, {
-      cache: "no-store",
-      headers: {
-        Accept: "application/json",
-        "User-Agent": "Mozilla/5.0",
-      },
-    });
-
-    if (!res1.ok) {
-      const errorBody1 = await res1.text();
-      console.error('Error fetching from local API:', res1.status, res1.statusText, errorBody1);
-      return {
-        products: [],
-        error: {
-          status: res1.status,
-          statusText: res1.statusText,
-          body: errorBody1,
-        },
-      };
-    }
-
-    const data1 = await res1.json();
-    console.log(data1['data']);
-
-
-
-
-
-
-
-
-
+    const json = await res.json();
 
     return {
-      products:data1['data'] || [],
+      products: json.data || [],
       error: null,
     };
   } catch (error) {
@@ -92,54 +51,39 @@ export default async function ItemPage() {
   return (
     <main className="item-container">
       <div className="page-header">
-        <h1>🛍️ Product Catalog Page</h1>
+        <h1>🛍️ Product Catalog</h1>
+
         <p>
-          Explore our curated collection of premium products across multiple
-          categories.
+          Discover our latest collection of premium products at the best prices.
+          Browse product details and add your favorite items to the cart.
         </p>
       </div>
 
       {error && (
-        <div
-          style={{
-            background: "#fff3f3",
-            border: "1px solid #ff4d4f",
-            borderRadius: "8px",
-            padding: "20px",
-            marginBottom: "24px",
-            color: "#d32f2f",
-          }}
-        >
-          <h2>❌ API Request Failed</h2>
+        <div className="error-card">
+          <h2>❌ Failed to Load Products</h2>
 
           <p>
-            <strong>Status:</strong> {error.status}
+            <strong>Status:</strong> {String(error.status)}
           </p>
 
           <p>
             <strong>Status Text:</strong> {error.statusText}
           </p>
 
-          <p>
-            <strong>Response:</strong>
-          </p>
-
-          <pre
-            style={{
-              whiteSpace: "pre-wrap",
-              overflowX: "auto",
-              background: "#f5f5f5",
-              padding: "12px",
-              borderRadius: "6px",
-              color: "#333",
-            }}
-          >
-            {error.body}
-          </pre>
+          <pre>{error.body}</pre>
         </div>
       )}
 
-      {!error && (
+      {!error && products.length === 0 && (
+        <div className="error-card">
+          <h2>No Products Found</h2>
+
+          <p>There are currently no products available.</p>
+        </div>
+      )}
+
+      {!error && products.length > 0 && (
         <div className="product-grid">
           {products.map((product: any) => (
             <article
@@ -148,32 +92,61 @@ export default async function ItemPage() {
             >
               <div className="image-wrapper">
                 <Image
-                  src='https://cdn.dummyjson.com/product-images/groceries/ice-cream/thumbnail.webp'
+                  src="https://cdn.dummyjson.com/product-images/groceries/ice-cream/thumbnail.webp"
                   alt={product.name}
                   fill
-                  sizes="300px"
                   className="product-image"
+                  sizes="(max-width:768px)100vw,350px"
                 />
               </div>
 
               <div className="product-content">
-                {/*<span className="category-badge">
-                  {product.category}
-                </span>*/}
-{}
+                <span className="category-badge">
+                  Premium Product
+                </span>
+
                 <h3>{product.name}</h3>
 
-                {/*<p>
-                  {product.description.slice(0, 90)}
-                  ...
-                </p>*/}
+                {/* <p className="description">
+                  {product.description?.length > 90
+                    ? `${product.description.substring(0, 90)}...`
+                    : product.description}
+                </p> */}
 
-                <div className="product-footer">
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginTop: "2px",
+                  }}
+                >
                   <span className="price">
                     ${product.price}
                   </span>
 
-                  <button>View Details</button>
+                  <span
+                    style={{
+                      color: "#16a34a",
+                      fontWeight: 600,
+                      fontSize: "14px",
+                    }}
+                  >
+                    In Stock
+                  </span>
+                </div>
+
+                <div className="product-footer">
+                  <Link
+                    href={`/category/item/${product.id}`}
+                    className="details-btn"
+                  >
+                    View Details
+                  </Link>
+
+                  <button className="cart-btn">
+                    🛒 Add to Cart
+                  </button>
                 </div>
               </div>
             </article>
