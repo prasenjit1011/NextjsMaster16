@@ -36,7 +36,11 @@ export default function DashboardPage() {
           <div style={styles.statCard}>
             <h3 style={styles.cardTitle}>Orders</h3>
             <h2 style={styles.cardValue}>856</h2>
-            <p style={styles.cardInfo}>+8% this month</p>
+            <p style={styles.cardInfo}>
+              <Link href="/admin/orders" style={{ color: '#10b981', textDecoration: 'underline' }}>
+                View Orders
+              </Link>
+            </p>
           </div>
 
           <div style={styles.statCard}>

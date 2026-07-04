@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
+import { createOrder } from "@/services/orderService";
 import {
   CartItem,
   clearCart,
@@ -49,16 +50,24 @@ export default function CartPage() {
     loadCart();
   };
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     if (cart.length === 0) return;
 
-    alert('🎉 Order placed successfully.');
+    try {
+      const order = await createOrder(cart, 101);
 
-    clearCart();
+      alert(
+        `🎉 Order #${order.id} placed successfully!\nTotal: ₹${order.total}`
+      );
 
-    loadCart();
+      clearCart();
+      loadCart();
+    } catch (error) {
+      console.error(error);
+      alert("Failed to place order");
+    }
   };
-
+  
   return (
     <main className="cart-container">
 
