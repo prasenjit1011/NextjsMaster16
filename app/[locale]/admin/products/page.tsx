@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import styles from './products.module.css';
+import Link from 'next/link';
 
 const API_URL = 'http://localhost:3001/api/items';
 
@@ -80,9 +81,11 @@ export default function ProductPage() {
             <p>Manage all products from one place.</p>
           </div>
 
-          <button className={styles.addBtn}>
+          <Link
+            href="/admin/products/create"
+            className={styles.addBtn}>
             + Add Product
-          </button>
+          </Link>
         </div>
 
         <div className={styles.searchBar}>
@@ -140,12 +143,12 @@ export default function ProductPage() {
 
                   <td>
                     <div className={styles.actionCell}>
-                      <button
+                      <Link
+                        href={`/admin/products/edit/${item.id}`}
                         className={`${styles.actionBtn} ${styles.editBtn}`}
-                        onClick={() => handleEdit(item)}
                       >
                         ✏️ Edit
-                      </button>
+                      </Link>
 
                       <button
                         className={`${styles.actionBtn} ${styles.deleteBtn}`}
