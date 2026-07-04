@@ -106,3 +106,65 @@ header {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+/* ===========================
+   Layout
+=========================== */
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1;
+}
+
+/* ===========================
+   Footer
+=========================== */
+
+.footer {
+  background: #111827;
+  color: #ffffff;
+  border-top: 1px solid #374151;
+  padding: 20px;
+  text-align: center;
+}
+
+.footerText {
+  margin: 0;
+  font-size: 14px;
+}
+
+.footerLinks {
+  margin-top: 12px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footerLinks a {
+  color: #93c5fd;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.footerLinks a:hover {
+  color: #ffffff;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width: 768px) {
+  .footerLinks {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

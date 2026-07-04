@@ -20,8 +20,15 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
         <ReduxProvider>
           <div style={{ border: "0px solid #b70951", padding: 0, marginTop: 0 }}>
-          <NavBar />
-          {children}
+            <NavBar />
+            <main className="mainContent">
+            {children}
+            </main>
+            <footer className="footer">
+              <p className="footerText">
+                © {new Date().getFullYear()} My Next Application. All Rights Reserved.
+              </p>
+            </footer>
           </div>
         </ReduxProvider>
   );
