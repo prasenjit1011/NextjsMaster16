@@ -1,13 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import {
+  Alert,
   Box,
   Card,
   CardContent,
   Container,
+  Snackbar,
   Typography,
 } from "@mui/material";
 
@@ -46,83 +48,157 @@ export default function DynamicForm() {
     defaultValues
   );
 
-  // Load saved data after hydration
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: "success" as
+      | "success"
+      | "error"
+      | "warning"
+      | "info",
+  });
+
+  // Load saved values after hydration
   useEffect(() => {
     if (isLoaded) {
       reset(savedForm);
     }
   }, [isLoaded, savedForm, reset]);
 
+  const handleCloseSnackbar = () => {
+    setSnackbar((prev) => ({
+      ...prev,
+      open: false,
+    }));
+  };
+
   const onSubmit = async (data: FormValues) => {
-    saveForm(data);
+    try {
+      saveForm(data);
 
-    alert("Form submitted successfully!");
+      console.log("Submitted Data:", data);
 
-    console.log(data);
+      setSnackbar({
+        open: true,
+        severity: "success",
+        message: "🎉 Form submitted successfully!",
+      });
+    } catch (error) {
+      console.error(error);
+
+      setSnackbar({
+        open: true,
+        severity: "error",
+        message: "Something went wrong. Please try again.",
+      });
+    }
   };
 
   return (
-    <Container maxWidth="sm" sx={{ py: 5 }}>
+    <>
       <Box
-  sx={{
-    minHeight: "100vh",
-    bgcolor: "#f4f6f8",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    p: 3,
-  }}
->
-  <Card
-    sx={{
-      width: "100%",
-      maxWidth: 500,
-      borderRadius: 3,
-      boxShadow: 6,
-    }}
-  >
-    <CardContent>
-      <Typography
-  variant="h5"
-  sx={{
-    fontWeight: 600,
-    mb: 0.5,
-  }}
->
-  Dynamic Form
-</Typography>
-
-<Typography
-  variant="body2"
-  color="text.secondary"
-  sx={{
-    mb: 3,
-  }}
->
-  JSON driven React Hook Form
-</Typography>
-
-      <Box
-        component="form"
-        onSubmit={handleSubmit(onSubmit)}
+        sx={{
+          minHeight: "100vh",
+          bgcolor: "#f5f7fb",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          p: 3,
+        }}
       >
-        {schema.data.map((field) => (
-          <Box key={field.id} sx={{ mb: 2 }}>
-            <FieldRenderer
-              field={field}
-              control={control}
-              errors={errors}
-            />
-          </Box>
-        ))}
+        <Container maxWidth="sm">
+          <Card
+            elevation={8}
+            sx={{
+              borderRadius: 4,
+            }}
+          >
+            <CardContent
+              sx={{
+                p: 4,
+              }}
+            >
+              <Typography
+                variant="h4"
+                align="center"
+                sx={{
+                  fontWeight: 700,
+                  mb: 1,
+                }}
+              >
+                Dynamic Signup Form
+              </Typography>
 
-        <Box mt={3}>
-          <SubmitButton loading={isSubmitting} text="Submit" />
-        </Box>
+              <Typography
+                variant="body2"
+                align="center"
+                color="text.secondary"
+                sx={{
+                  mb: 4,
+                }}
+              >
+                React Hook Form + Material UI + JSON Driven Form
+              </Typography>
+
+              <Box
+                component="form"
+                onSubmit={handleSubmit(onSubmit)}
+              >
+                {schema.data.map((field) => (
+                  <Box
+                    key={field.id}
+                    sx={{
+                      mb: 2,
+                    }}
+                  >
+                    <FieldRenderer
+                      field={field}
+                      control={control}
+                      errors={errors}
+                    />
+                  </Box>
+                ))}
+
+                <Box
+                  sx={{
+                    mt: 4,
+                  }}
+                >
+                  <SubmitButton
+                    loading={isSubmitting}
+                    text="Submit"
+                  />
+                </Box>
+              </Box>
+            </CardContent>
+          </Card>
+        </Container>
       </Box>
-    </CardContent>
-  </Card>
-</Box>
-    </Container>
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={4000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={snackbar.severity}
+          variant="filled"
+          sx={{
+            minWidth: 350,
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: "1rem",
+            borderRadius: 2,
+            boxShadow: 6,
+          }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
+    </>
   );
 }

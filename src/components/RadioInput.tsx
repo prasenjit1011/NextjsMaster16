@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Box,
   FormControl,
   FormControlLabel,
   FormHelperText,
@@ -27,29 +28,49 @@ export default function RadioInput({
 }: RadioInputProps) {
   return (
     <FormControl
-      component="fieldset"
-      margin="normal"
       fullWidth
+      margin="normal"
       required={field.required}
       error={error}
     >
-      <FormLabel component="legend">{field.name}</FormLabel>
-
-      <RadioGroup
-        {...controllerField}
-        value={controllerField.value ?? ""}
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: 2,
+          flexWrap: "wrap",
+        }}
       >
-        {field.listOfValues1?.map((option) => (
-          <FormControlLabel
-            key={option}
-            value={option}
-            control={<Radio />}
-            label={option}
-          />
-        ))}
-      </RadioGroup>
+        <FormLabel
+          sx={{
+            minWidth: 130,
+            color: "text.primary",
+            fontWeight: 500,
+          }}
+        >
+          {field.name}
+        </FormLabel>
 
-      <FormHelperText>{helperText}</FormHelperText>
+        <RadioGroup
+          row
+          {...controllerField}
+          value={controllerField.value ?? ""}
+          sx={{
+            flex: 1,
+          }}
+        >
+          {field.listOfValues1?.map((option) => (
+            <FormControlLabel
+              key={option}
+              value={option}
+              control={<Radio />}
+              label={option}
+            />
+          ))}
+        </RadioGroup>
+      </Box>
+
+      {helperText && <FormHelperText>{helperText}</FormHelperText>}
     </FormControl>
   );
 }
