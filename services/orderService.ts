@@ -1,8 +1,6 @@
 import axios from "axios";
 
-const API = "http://localhost:3001/api/orders";
-
-const ORDER_API = "http://localhost:3001/api/orders";
+const ORDER_API = process.env.BACKEND_API + "/api/orders";
 
 export async function createOrder(cart: any[], userId: number) {
   const response = await fetch(ORDER_API, {

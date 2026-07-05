@@ -1,12 +1,8 @@
-// app/api/auth/login/route.ts
-// app/api/auth/login/route.ts
-
 export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    // 👉 Call external API
-    const backendRes = await fetch('http://localhost:3001/api/auth/login', {
+    const backendRes = await fetch(process.env.BACKEND_API + '/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -23,26 +19,45 @@ export async function POST(req: Request) {
       );
     }
 
-    console.log('Backend response 456:', data.access_token);
+    console.log('Backend response:', data);
 
-    // ✅ Set cookie from backend token
-    const isProd = false;//process.env.NODE_ENV === 'production';
-    return new Response(JSON.stringify({ message: 'Login success' }), {
-      status: 200,
-      headers: {
-        'Set-Cookie': `token=${data.access_token}; Path=/; HttpOnly; ${
-          isProd ? 'Secure;' : ''
-        } SameSite=Lax; Max-Age=86400`,
-      },
-    });
+    const isProd = process.env.NODE_ENV === 'production';
 
+    const cookies = [
+      `token=${data.access_token}; Path=/; HttpOnly; ${
+        isProd ? 'Secure;' : ''
+      } SameSite=Lax; Max-Age=86400`,
 
+      `username=${encodeURIComponent(data.username)}; Path=/; ${
+        isProd ? 'Secure;' : ''
+      } SameSite=Lax; Max-Age=86400`,
 
+      `role=${encodeURIComponent(data.role)}; Path=/; ${
+        isProd ? 'Secure;' : ''
+      } SameSite=Lax; Max-Age=86400`,
+    ];
+
+    return new Response(
+      JSON.stringify({
+        message: 'Login success',
+        username: data.username,
+        role: data.role,
+      }),
+      {
+        status: 200,
+        headers: {
+          'Set-Cookie': cookies.join(', '),
+          'Content-Type': 'application/json',
+        },
+      }
+    );
   } catch (err) {
-    return Response.json({ message: 'Server error' }, { status: 500 });
+    return Response.json(
+      { message: 'Server error' },
+      { status: 500 }
+    );
   }
 }
-
 
 // export async function POST(req: Request) {
 //   const body = await req.json();

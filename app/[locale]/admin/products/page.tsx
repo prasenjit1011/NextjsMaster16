@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import styles from './products.module.css';
 import Link from 'next/link';
 
-const API_URL = 'http://localhost:3001/api/items';
+const API_URL = process.env.BACKEND_API + '/api/items';
 
 export default function ProductPage() {
   const [products, setProducts] = useState<any[]>([]);
