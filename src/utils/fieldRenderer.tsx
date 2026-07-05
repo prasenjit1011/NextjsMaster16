@@ -12,7 +12,7 @@ interface FieldRendererProps {
   errors: FieldErrors<any>;
 }
 
-export function fieldRenderer({
+export function FieldRenderer({
   field,
   control,
   errors,
@@ -21,19 +21,33 @@ export function fieldRenderer({
 
   return (
     <Controller
-      key={field.id}
       name={field.name}
       control={control}
       rules={rules}
       render={({ field: controllerField }) => {
+        const error = !!errors?.[field.name];
+        const helperText =
+          (errors?.[field.name]?.message as string) || "";
+
         switch (field.fieldType) {
           case "TEXT":
             return (
               <TextInput
                 field={field}
                 controllerField={controllerField}
-                error={!!errors[field.name]}
-                helperText={errors[field.name]?.message as string}
+                error={error}
+                helperText={helperText}
+              />
+            );
+
+          case "PASSWORD":
+            return (
+              <TextInput
+                field={field}
+                controllerField={controllerField}
+                error={error}
+                helperText={helperText}
+                type="password"
               />
             );
 
@@ -42,8 +56,8 @@ export function fieldRenderer({
               <SelectInput
                 field={field}
                 controllerField={controllerField}
-                error={!!errors[field.name]}
-                helperText={errors[field.name]?.message as string}
+                error={error}
+                helperText={helperText}
               />
             );
 
@@ -52,8 +66,8 @@ export function fieldRenderer({
               <RadioInput
                 field={field}
                 controllerField={controllerField}
-                error={!!errors[field.name]}
-                helperText={errors[field.name]?.message as string}
+                error={error}
+                helperText={helperText}
               />
             );
 

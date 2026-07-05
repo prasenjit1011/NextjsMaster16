@@ -15,7 +15,7 @@ import formData from "../../data/form.json";
 
 import { FormSchema, FormValues } from "@/types/form";
 import { getDefaultValues } from "@/lib/defaultValues";
-import { fieldRenderer } from "@/utils/fieldRenderer";
+import { FieldRenderer } from "@/utils/fieldRenderer";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import SubmitButton from "./SubmitButton";
 
@@ -63,49 +63,54 @@ export default function DynamicForm() {
 
   return (
     <Container maxWidth="sm" sx={{ py: 5 }}>
-      <Card elevation={4}>
-        <CardContent>
+      <Box
+  sx={{
+    minHeight: "100vh",
+    bgcolor: "#f4f6f8",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    p: 3,
+  }}
+>
+  <Card
+    sx={{
+      width: "100%",
+      maxWidth: 500,
+      borderRadius: 3,
+      boxShadow: 6,
+    }}
+  >
+    <CardContent>
+      <Typography variant="h5" fontWeight={600} mb={0.5}>
+        Dynamic Form
+      </Typography>
 
-          <Typography
-            variant="h4"
-            align="center"
-            gutterBottom
-          >
-            Dynamic Signup Form
-          </Typography>
+      <Typography variant="body2" color="text.secondary" mb={3}>
+        JSON driven React Hook Form
+      </Typography>
 
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            align="center"
-            mb={3}
-          >
-            This form is generated completely from JSON.
-          </Typography>
-
-          <Box
-            component="form"
-            onSubmit={handleSubmit(onSubmit)}
-            noValidate
-          >
-            {schema.data.map((field) => (
-              <Box key={field.id} mb={2}>
-                {fieldRenderer({
-                  field,
-                  control,
-                  errors,
-                })}
-              </Box>
-            ))}
-
-            <SubmitButton
-              loading={isSubmitting}
-              text="Sign Up"
+      <Box
+        component="form"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        {schema.data.map((field) => (
+          <Box key={field.id} sx={{ mb: 2 }}>
+            <FieldRenderer
+              field={field}
+              control={control}
+              errors={errors}
             />
           </Box>
+        ))}
 
-        </CardContent>
-      </Card>
+        <Box mt={3}>
+          <SubmitButton loading={isSubmitting} text="Submit" />
+        </Box>
+      </Box>
+    </CardContent>
+  </Card>
+</Box>
     </Container>
   );
 }
