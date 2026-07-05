@@ -82,13 +82,25 @@ export default function DynamicForm() {
     }}
   >
     <CardContent>
-      <Typography variant="h5" fontWeight={600} mb={0.5}>
-        Dynamic Form
-      </Typography>
+      <Typography
+  variant="h5"
+  sx={{
+    fontWeight: 600,
+    mb: 0.5,
+  }}
+>
+  Dynamic Form
+</Typography>
 
-      <Typography variant="body2" color="text.secondary" mb={3}>
-        JSON driven React Hook Form
-      </Typography>
+<Typography
+  variant="body2"
+  color="text.secondary"
+  sx={{
+    mb: 3,
+  }}
+>
+  JSON driven React Hook Form
+</Typography>
 
       <Box
         component="form"
