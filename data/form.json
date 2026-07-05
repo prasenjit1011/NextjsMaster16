@@ -2,21 +2,12 @@
   "data": [
     {
       "id": 1,
-      "name": "First Name",
+      "name": "Full Name",
       "fieldType": "TEXT",
       "minLength": 1,
       "maxLength": 100,
       "defaultValue": "John",
       "required": true
-    },
-    {
-      "id": 5,
-      "name": "Last Name",
-      "fieldType": "TEXT",
-      "minLength": 1,
-      "maxLength": 100,
-      "defaultValue": "Doe",
-      "required": false
     },
     {
       "id": 2,
