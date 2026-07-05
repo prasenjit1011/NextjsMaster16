@@ -2,7 +2,7 @@
   "data": [
     {
       "id": 1,
-      "name": "First Name",
+      "name": "Full Name",
       "fieldType": "TEXT",
       "minLength": 1,
       "maxLength": 100,
@@ -11,15 +11,6 @@
     },
     {
       "id": 2,
-      "name": "Last Name",
-      "fieldType": "TEXT",
-      "minLength": 1,
-      "maxLength": 100,
-      "defaultValue": "Doe",
-      "required": false
-    },
-    {
-      "id": 3,
       "name": "Email",
       "fieldType": "TEXT",
       "minLength": 1,
@@ -28,16 +19,7 @@
       "required": true
     },
     {
-      "id": 4,
-      "name": "Password",
-      "fieldType": "PASSWORD",
-      "minLength": 6,
-      "maxLength": 20,
-      "required": true,
-      "defaultValue": ""
-    },
-    {
-      "id": 5,
+      "id": 3,
       "name": "Gender",
       "fieldType": "LIST",
       "defaultValue": "Male",
@@ -49,7 +31,7 @@
       ]
     },
     {
-      "id": 6,
+      "id": 4,
       "name": "Love React?",
       "fieldType": "RADIO",
       "defaultValue": "Yes",
