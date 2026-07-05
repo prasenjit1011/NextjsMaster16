@@ -18,18 +18,18 @@ const LoginPage = () =>{
     const res = await fetch('/api/auth/login', bodyData);
 
     if (res.ok) {
-      setLogStatus(123)
+      // setLogStatus(123)
       router.refresh();
 
-      try {
-        console.log('Dashboard')
-        router.push('/dashboard');
-      } catch (err) {
-        console.error('Error')
-        console.error(err);
-      }
+      // try {
+      //   console.log('Dashboard')
+      //   router.push('/dashboard');
+      // } catch (err) {
+      //   console.error('Error')
+      //   console.error(err);
+      // }
 
-
+      console.log('Dashboard', res.json());
       router.replace('/en/dashboard');
       // router.push('/en/dashboard');
     }

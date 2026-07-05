@@ -3,7 +3,7 @@ import Link from "next/link";
 import "./details.css";
 import AddToCartButton from "@/app/components/AddToCartButton";
 
-const API_URL = "http://localhost:3001/api/items";
+const API_URL = process.env.BACKEND_API + "/api/items";
 
 async function getProduct(id: string) {
   try {

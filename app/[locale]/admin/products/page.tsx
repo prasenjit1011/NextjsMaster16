@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import styles from './products.module.css';
 import Link from 'next/link';
 
-const API_URL = 'http://localhost:3001/api/items';
+const API_URL = process.env.NEXT_PUBLIC_BACKEND_API + '/api/items';
 
 export default function ProductPage() {
   const [products, setProducts] = useState<any[]>([]);
@@ -14,9 +14,9 @@ export default function ProductPage() {
   const loadProducts = async (keyword = '') => {
     try {
       setLoading(true);
-
+      const productsUrl = `${API_URL}?search=${encodeURIComponent(keyword)}&page=1&limit=10`;
       const res = await fetch(
-        `${API_URL}?search=${encodeURIComponent(keyword)}&page=1&limit=10`,
+        productsUrl,
         {
           cache: 'no-store',
           credentials: 'include',

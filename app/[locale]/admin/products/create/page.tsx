@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import ProductForm, { Product } from '../ProductForm';
 
-const API_URL = 'http://localhost:3001/api/items';
+const API_URL = process.env.NEXT_PUBLIC_BACKEND_API + '/api/items';
 
 export default function CreateProductPage() {
   const router = useRouter();
