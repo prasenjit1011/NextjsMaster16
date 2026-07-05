@@ -1,7 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+
+import { addToCart } from "@/utils/cart";
+
 import "./AddToCartButton.css";
 
 interface Product {
@@ -21,51 +24,65 @@ export default function AddToCartButton({
   product,
 }: AddToCartButtonProps) {
   const router = useRouter();
+  const pathname = usePathname();
+
+  const locale = pathname.split("/")[1];
 
   const [showAlert, setShowAlert] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
-  const addToCart = () => {
+  const handleAddToCart = () => {
     try {
-      const existingCart = localStorage.getItem("cart");
-
-      let cart: Product[] = existingCart
-        ? JSON.parse(existingCart)
-        : [];
-
-      const existingItem = cart.find(
-        (item) => item.id === product.id
-      );
-
-      if (!existingItem) {
-        cart.push(product);
-
-        localStorage.setItem(
-          "cart",
-          JSON.stringify(cart)
-        );
-      }
+      // Save using shared cart utility
+      addToCart(product);
 
       setShowAlert(true);
+      setIsClosing(false);
 
+      // Auto close after 10 seconds
       setTimeout(() => {
-        setShowAlert(false);
-      }, 3000);
+        setIsClosing(true);
+
+        setTimeout(() => {
+          setShowAlert(false);
+          setIsClosing(false);
+        }, 400);
+      }, 10000);
     } catch (error) {
       console.error("Failed to add to cart:", error);
     }
+  };
+
+  const closeAlert = () => {
+    setIsClosing(true);
+
+    setTimeout(() => {
+      setShowAlert(false);
+      setIsClosing(false);
+    }, 400);
+  };
+
+  const viewCart = () => {
+    closeAlert();
+
+    router.push(`/${locale}/cart`);
   };
 
   return (
     <>
       <button
         className="cart-btn"
-        onClick={addToCart}
+        onClick={handleAddToCart}
       >
         🛒 Add to Cart
       </button>
 
       {showAlert && (
-        <div className="cart-alert-overlay">
+        <div
+          className={`cart-alert-overlay ${
+            isClosing ? "fade-out" : ""
+          }`}
+        >
           <div className="cart-alert">
             <div className="success-circle">
               ✓
@@ -86,19 +103,14 @@ export default function AddToCartButton({
             <div className="cart-alert-actions">
               <button
                 className="continue-btn"
-                onClick={() =>
-                  setShowAlert(false)
-                }
+                onClick={closeAlert}
               >
                 Continue Shopping
               </button>
 
               <button
                 className="view-cart-btn"
-                onClick={() => {
-                  setShowAlert(false);
-                  router.push("/cart");
-                }}
+                onClick={viewCart}
               >
                 View Cart 🛒
               </button>

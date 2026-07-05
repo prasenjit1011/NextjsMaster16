@@ -133,3 +133,32 @@
     transform:scale(1);
   }
 }
+
+.cart-alert-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+
+  opacity: 1;
+  transition: opacity .4s ease;
+}
+
+.cart-alert {
+  transform: scale(1);
+  transition: transform .4s ease, opacity .4s ease;
+  opacity: 1;
+}
+
+.cart-alert-overlay.fade-out {
+  opacity: 0;
+}
+
+.cart-alert-overlay.fade-out .cart-alert {
+  opacity: 0;
+  transform: scale(.92);
+}
