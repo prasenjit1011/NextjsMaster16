@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import "./details.css";
 import AddToCartButton from "@/app/components/AddToCartButton";
+import AlertProvider from "@/app/components/AlertProvider";
+import ProductActions from "./ProductActions";
 
 const API_URL = process.env.BACKEND_API + "/api/items";
 
@@ -55,23 +57,25 @@ export default async function ProductDetailsPage({
 
   if (error) {
     return (
-      <main className="details-container">
-        <div className="error-card">
-          <h2>❌ Unable to Load Product</h2>
+      <>
+        <AlertProvider
+          open
+          severity="error"
+          title="Unable to Load Product"
+          message={`${error.status} • ${error.statusText}`}
+        />
 
-          <p>
-            <strong>Status:</strong> {String(error.status)}
-          </p>
-
-          <p>
-            <strong>Message:</strong> {error.statusText}
-          </p>
-
-          <Link href="/category/item" className="back-btn">
-            ← Back to Products
-          </Link>
-        </div>
-      </main>
+        <main className="details-container">
+          <div className="error-card">
+            <Link
+              href="/category/item"
+              className="back-btn"
+            >
+              ← Back to Products
+            </Link>
+          </div>
+        </main>
+      </>
     );
   }
 
@@ -152,8 +156,7 @@ export default async function ProductDetailsPage({
             </p>
           </div>
 
-          <div className="action-buttons">
-            <AddToCartButton
+          <ProductActions
               product={{
                 id: product.id,
                 name: product.name,
@@ -164,15 +167,6 @@ export default async function ProductDetailsPage({
                   "https://cdn.dummyjson.com/product-images/groceries/ice-cream/thumbnail.webp",
               }}
             />
-
-            <button className="buy-btn">
-              ⚡ Buy Now
-            </button>
-
-            <button className="wishlist-btn">
-              ❤️ Wishlist
-            </button>
-          </div>
 
           <div className="features">
             <div className="feature">
