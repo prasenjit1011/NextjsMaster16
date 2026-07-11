@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import styles from './products.module.css';
 import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
+import styles from './products.module.css';
 
 export interface Product {
   id?: number;
@@ -33,8 +34,9 @@ export default function ProductForm({
   onSubmit,
 }: ProductFormProps) {
   const router = useRouter();
-  const [form, setForm] = useState<Product>(emptyProduct);
+  const locale = useLocale();
 
+  const [form, setForm] = useState<Product>(emptyProduct);
   const [saving, setSaving] = useState(false);
 
   const [errors, setErrors] = useState({
@@ -110,14 +112,13 @@ export default function ProductForm({
     return valid;
   };
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!validate()) return;
 
     try {
       setSaving(true);
-
       await onSubmit(form);
     } catch (err) {
       console.error(err);
@@ -139,13 +140,10 @@ export default function ProductForm({
     <div className={styles.container}>
       <div className={styles.card}>
         <form onSubmit={submit}>
-
           <div className={styles.topBar}>
             <div>
               <h2>
-                {initialData
-                  ? '✏ Edit Product'
-                  : '➕ Add Product'}
+                {initialData ? '✏ Edit Product' : '➕ Add Product'}
               </h2>
 
               <p>
@@ -157,7 +155,6 @@ export default function ProductForm({
           </div>
 
           {/* Product Name */}
-
           <div className={styles.searchBar}>
             <label>
               <strong>Product Name</strong>
@@ -168,25 +165,18 @@ export default function ProductForm({
               type="text"
               name="name"
               placeholder="Samsung Galaxy S25"
-              value={form.name ?? ''}
+              value={form.name}
               onChange={handleChange}
             />
 
             {errors.name && (
-              <p
-                style={{
-                  color: '#dc2626',
-                  marginTop: 5,
-                  fontSize: 13,
-                }}
-              >
+              <p className={styles.errorText}>
                 {errors.name}
               </p>
             )}
           </div>
 
           {/* Description */}
-
           <div className={styles.searchBar}>
             <label>
               <strong>Description</strong>
@@ -197,25 +187,18 @@ export default function ProductForm({
               rows={5}
               name="description"
               placeholder="Product description..."
-              value={form.description ?? ''}
+              value={form.description}
               onChange={handleChange}
             />
 
             {errors.description && (
-              <p
-                style={{
-                  color: '#dc2626',
-                  marginTop: 5,
-                  fontSize: 13,
-                }}
-              >
+              <p className={styles.errorText}>
                 {errors.description}
               </p>
             )}
           </div>
 
           {/* SKU */}
-
           <div className={styles.searchBar}>
             <label>
               <strong>SKU</strong>
@@ -226,25 +209,18 @@ export default function ProductForm({
               type="text"
               name="sku"
               placeholder="SAM-S25-001"
-              value={form.sku ?? ''}
+              value={form.sku}
               onChange={handleChange}
             />
 
             {errors.sku && (
-              <p
-                style={{
-                  color: '#dc2626',
-                  marginTop: 5,
-                  fontSize: 13,
-                }}
-              >
+              <p className={styles.errorText}>
                 {errors.sku}
               </p>
             )}
           </div>
 
           {/* Price */}
-
           <div className={styles.searchBar}>
             <label>
               <strong>Price</strong>
@@ -257,35 +233,22 @@ export default function ProductForm({
               step="0.01"
               name="price"
               placeholder="799"
-              value={form.price ?? 0}
+              value={form.price}
               onChange={handleChange}
             />
 
             {errors.price && (
-              <p
-                style={{
-                  color: '#dc2626',
-                  marginTop: 5,
-                  fontSize: 13,
-                }}
-              >
+              <p className={styles.errorText}>
                 {errors.price}
               </p>
             )}
           </div>
 
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'flex-end',
-              gap: 15,
-              marginTop: 30,
-            }}
-          >
+          <div className={styles.formActions}>
             <button
               type="button"
               className={styles.cancelBtn}
-              onClick={() => router.push('/admin/products')}
+              onClick={() => router.push(`/${locale}/admin/products`)}
             >
               ← Back
             </button>
@@ -298,7 +261,6 @@ export default function ProductForm({
               {saving ? 'Saving...' : submitText}
             </button>
           </div>
-
         </form>
       </div>
     </div>

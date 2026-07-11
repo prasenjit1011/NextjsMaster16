@@ -1,12 +1,14 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import ProductForm, { Product } from '../ProductForm';
 
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_API + '/api/items';
 
 export default function CreateProductPage() {
   const router = useRouter();
+  const locale = useLocale();
 
   const createProduct = async (data: Product) => {
     try {
@@ -34,8 +36,7 @@ export default function CreateProductPage() {
 
       alert('Product created successfully.');
 
-      router.push('/admin/products');
-
+      router.push(`/${locale}/admin/products`);
       router.refresh();
     } catch (error) {
       console.error(error);

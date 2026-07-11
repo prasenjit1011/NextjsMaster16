@@ -217,3 +217,16 @@
     gap: 12px;
   }
 }
+
+.errorText {
+  color: #dc2626;
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
+}

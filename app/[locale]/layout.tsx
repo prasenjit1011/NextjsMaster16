@@ -1,7 +1,3 @@
-// "use client";
-
-// import { useState } from "react";
-
 import ReduxProvider from '../../lib/provider';
 import Link from 'next/link';
 import { ReactNode } from 'react';
@@ -41,12 +37,12 @@ const languages = [
   { code: "hi", name: "हिन्दी", flag: "🇮🇳", href: "/hi" },
 ];
 
-const NavBar = async () => { 
+const NavBar = async () => {
   const locale = await getLocale();
-  const selectedLanguage = languages.find((lang) => lang.code === locale) || languages[0];
-  const text = await getTranslations('HomePage');
-   
+  const selectedLanguage =
+    languages.find((lang) => lang.code === locale) || languages[0];
 
+  const text = await getTranslations("HomePage");
 
   return (
     <header>
@@ -54,19 +50,18 @@ const NavBar = async () => {
         <Image
           src="/logo.svg"
           alt={`MyWebsite ${locale}`}
-          width='200'
-          height='70'
+          width={200}
+          height={70}
         />
-        
       </div>
 
       <nav className="navbar">
-        <Link href="/">{text('Home')}</Link>
-        <Link href="/aboutus">{text('About Us')}</Link>
-        <Link href="/category/item">{text('Catalog')}</Link>
-        <Link href="/cart">{text('Cart')}</Link>
-        <Link href="/dashboard">{text('Dashboard')}</Link>
-        
+        <Link href={`/${locale}`}>{text("Home")}</Link>
+        <Link href={`/${locale}/aboutus`}>{text("About Us")}</Link>
+        <Link href={`/${locale}/category/item`}>{text("Catalog")}</Link>
+        <Link href={`/${locale}/cart`}>{text("Cart")}</Link>
+        <Link href={`/${locale}/dashboard`}>{text("Dashboard")}</Link>
+
         {/* Language Dropdown */}
         <div className="language-dropdown">
           <button className="language-btn">
@@ -77,7 +72,7 @@ const NavBar = async () => {
             {languages.map((lang) => (
               <Link
                 key={lang.code}
-                href={lang.href}                
+                href={`/${lang.code}`}
               >
                 {lang.flag} {lang.name}
               </Link>
@@ -88,6 +83,5 @@ const NavBar = async () => {
     </header>
   );
 };
-
 
 export default RootLayout;

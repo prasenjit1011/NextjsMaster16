@@ -1,11 +1,8 @@
-
-import { increment } from '@/features/counterSlice';
-import Counter from '../components/Counter';
-import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 
-export default function Home() {
-  const text = useTranslations('HomePage');
+export default async function Home() {
+  const text = await getTranslations('HomePage');
 
   return (
     <>
@@ -14,12 +11,10 @@ export default function Home() {
 
         <p>{text('description')}</p>
 
-
-        <Link href="/category/item" className="btn" >
+        <Link href="/category/item" className="btn">
           Get Started
         </Link>
       </section>
-      
 
       <section className="features">
         <div className="card">
@@ -37,8 +32,6 @@ export default function Home() {
           <p>Designed to grow with your business requirements.</p>
         </div>
       </section>
-
-      
     </>
   );
 }

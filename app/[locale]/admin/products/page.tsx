@@ -1,33 +1,45 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import styles from './products.module.css';
+import { useLocale } from 'next-intl';
 import Link from 'next/link';
+import styles from './products.module.css';
 
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_API + '/api/items';
 
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  sku: string;
+  price: number;
+}
+
 export default function ProductPage() {
-  const [products, setProducts] = useState<any[]>([]);
+  const locale = useLocale();
+
+  const [products, setProducts] = useState<Product[]>([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
 
   const loadProducts = async (keyword = '') => {
     try {
       setLoading(true);
-      const productsUrl = `${API_URL}?search=${encodeURIComponent(keyword)}&page=1&limit=10`;
-      const res = await fetch(
-        productsUrl,
-        {
-          cache: 'no-store',
-          credentials: 'include',
-          headers: {
-            Accept: 'application/json',
-          },
-        }
-      );
+
+      const url = `${API_URL}?search=${encodeURIComponent(
+        keyword
+      )}&page=1&limit=10`;
+
+      const res = await fetch(url, {
+        cache: 'no-store',
+        credentials: 'include',
+        headers: {
+          Accept: 'application/json',
+        },
+      });
 
       const json = await res.json();
-      setProducts(json.data || []);
+      setProducts(json.data ?? []);
     } catch (error) {
       console.error(error);
       setProducts([]);
@@ -36,19 +48,19 @@ export default function ProductPage() {
     }
   };
 
+  // Initial load
   useEffect(() => {
     loadProducts();
   }, []);
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearch(value);
-    loadProducts(value);
-  };
+  // Debounced search
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      loadProducts(search);
+    }, 400);
 
-  const handleEdit = (item: any) => {
-    alert(`Edit Product : ${item.name}`);
-  };
+    return () => clearTimeout(timer);
+  }, [search]);
 
   const handleDelete = async (id: number) => {
     if (!confirm('Delete this product?')) return;
@@ -82,8 +94,9 @@ export default function ProductPage() {
           </div>
 
           <Link
-            href="/admin/products/create"
-            className={styles.addBtn}>
+            href={`/${locale}/admin/products/create`}
+            className={styles.addBtn}
+          >
             + Add Product
           </Link>
         </div>
@@ -93,7 +106,7 @@ export default function ProductPage() {
             className={styles.input}
             placeholder="Search by Name..."
             value={search}
-            onChange={handleSearch}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </div>
 
@@ -105,7 +118,7 @@ export default function ProductPage() {
               <th>Description</th>
               <th>SKU</th>
               <th>Price</th>
-              <th width="180">Action</th>
+              <th style={{ width: 180 }}>Action</th>
             </tr>
           </thead>
 
@@ -134,9 +147,7 @@ export default function ProductPage() {
                   <td>{item.description}</td>
 
                   <td>
-                    <span className={styles.badge}>
-                      {item.sku}
-                    </span>
+                    <span className={styles.badge}>{item.sku}</span>
                   </td>
 
                   <td>₹ {item.price.toLocaleString()}</td>
@@ -144,7 +155,7 @@ export default function ProductPage() {
                   <td>
                     <div className={styles.actionCell}>
                       <Link
-                        href={`/admin/products/edit/${item.id}`}
+                        href={`/${locale}/admin/products/edit/${item.id}`}
                         className={`${styles.actionBtn} ${styles.editBtn}`}
                       >
                         ✏️ Edit
