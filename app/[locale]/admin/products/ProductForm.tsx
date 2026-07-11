@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import styles from './products.module.css';
+import { useRouter } from 'next/navigation';
 
 export interface Product {
   id?: number;
@@ -31,6 +32,7 @@ export default function ProductForm({
   submitText = 'Save Product',
   onSubmit,
 }: ProductFormProps) {
+  const router = useRouter();
   const [form, setForm] = useState<Product>(emptyProduct);
 
   const [saving, setSaving] = useState(false);
@@ -281,13 +283,19 @@ export default function ProductForm({
             }}
           >
             <button
+              type="button"
+              className={styles.cancelBtn}
+              onClick={() => router.push('/admin/products')}
+            >
+              ← Back
+            </button>
+
+            <button
               type="submit"
               className={styles.addBtn}
               disabled={saving}
             >
-              {saving
-                ? 'Saving...'
-                : submitText}
+              {saving ? 'Saving...' : submitText}
             </button>
           </div>
 
