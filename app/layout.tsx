@@ -3,6 +3,7 @@ import './style.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import type { Metadata } from 'next';
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: {
@@ -26,6 +27,10 @@ export default async function RootLayout({
       <body>
         <NextIntlClientProvider messages={messages}>
           {children}
+          <Script
+            src="/realestate/js/script.js"
+            strategy="afterInteractive"
+          />
         </NextIntlClientProvider>
       </body>
     </html>

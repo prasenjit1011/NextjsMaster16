@@ -1,7 +1,3 @@
-// "use client";
-
-// import { useState } from "react";
-
 import ReduxProvider from '../../lib/provider';
 import Link from 'next/link';
 import { ReactNode } from 'react';
@@ -10,18 +6,25 @@ import { getLocale, getTranslations } from "next-intl/server";
 import './navbar.css'
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Luxury from './components/Luxury';
+import Footer from './components/Footer';
 
 export const metadata = {
   title: "My App",
   description: "Next.js App",
 };
 
+
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
         <ReduxProvider>
           <div style={{ border: "0px solid #b70951", padding: 0, marginTop: 0 }}>
-          <NavBar />
-          {children}
+            <Header />
+            <Hero />
+            <Luxury />
+            <Footer />
           </div>
         </ReduxProvider>
   );
@@ -38,7 +41,7 @@ const NavBar = async () => {
   const locale = await getLocale();
   const selectedLanguage = languages.find((lang) => lang.code === locale) || languages[0];
   const text = await getTranslations('HomePage');
-   
+  
 
 
   return (
@@ -106,6 +109,5 @@ const NavBar = async () => {
     </header>
   );
 };
-
 
 export default RootLayout;
