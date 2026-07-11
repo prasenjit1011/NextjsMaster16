@@ -1,6 +1,7 @@
 import "./category.css";
 import Counter from "../../components/Counter";
 import Link from "next/link";
+import { getLocale } from "next-intl/server";
 
 const categories = [
   {
@@ -41,7 +42,9 @@ const categories = [
   },
 ];
 
-export default function Category() {
+export default async function Category() {
+  const locale = await getLocale();
+
   return (
     <main className="category-container">
       <div className="page-header">
@@ -56,7 +59,7 @@ export default function Category() {
         {categories.map((category) => (
           <Link
             key={category.id}
-            href="/category/item"
+            href={`/${locale}/category/item`}
             className="category-card"
           >
             <h3>{category.name}</h3>
