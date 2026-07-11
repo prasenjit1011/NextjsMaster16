@@ -32,9 +32,10 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
 
 
 const languages = [
+  { code: "ar", name: "العربية", flag: "🇦🇪", href: "/ar" },
   { code: "en", name: "English", flag: "🇬🇧", href: "/en" },
-  { code: "bn", name: "বাংলা", flag: "🇧🇩", href: "/bn" },
   { code: "hi", name: "हिन्दी", flag: "🇮🇳", href: "/hi" },
+  { code: "bn", name: "বাংলা", flag: "🇧🇩", href: "/bn" },  
 ];
 
 const NavBar = async () => {
