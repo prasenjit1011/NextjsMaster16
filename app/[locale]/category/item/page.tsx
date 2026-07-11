@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import "./item.css";
 import AddToCartButton from "@/app/components/AddToCartButton";
+import { getTranslations } from "next-intl/server";
 
 const API_URL = process.env.BACKEND_API + "/api/items";
 
@@ -47,17 +48,15 @@ async function getProducts() {
 }
 
 export default async function ItemPage() {
+  const text = await getTranslations('HomePage');
   const { products, error } = await getProducts();
 
   return (
     <main className="item-container">
       <div className="page-header">
-        <h1>🛍️ Product Catalog</h1>
+        <h1>🛍️ {text('title4')}</h1>
 
-        <p>
-          Discover our latest collection of premium products at the best prices.
-          Browse product details and add your favorite items to the cart.
-        </p>
+        <p>{text('msg4')}</p>
       </div>
 
       {error && (

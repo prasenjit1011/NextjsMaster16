@@ -18,18 +18,18 @@ export default async function Home() {
 
       <section className="features">
         <div className="card">
-          <h3>Fast</h3>
-          <p>Optimized performance for the best user experience.</p>
+          <h3>{text('title1')}</h3>
+          <p>{text('msg1')}</p>
         </div>
 
         <div className="card">
-          <h3>Secure</h3>
-          <p>Built with security best practices from the start.</p>
+          <h3>{text('title2')}</h3>
+          <p>{text('msg2')}</p>
         </div>
 
         <div className="card">
-          <h3>Scalable</h3>
-          <p>Designed to grow with your business requirements.</p>
+          <h3>{text('title3')}</h3>
+          <p>{text('msg3')}</p>
         </div>
       </section>
     </>

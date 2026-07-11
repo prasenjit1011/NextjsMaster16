@@ -1,8 +1,20 @@
 {
   "HomePage": {
     "title": "Welcome",
-    "description": "Create modern web applications with scalable architecture and outstanding user experiences.",
+    "description": "Welcome to DubaiMart – Your One-Stop Online Shopping Destination in the Dubai.",    
     "counterPage": "Button click count",
+    "title1": "Shop Smarter",
+    "title2": "Shopping Destination",
+    "title3": "Amazing Deals",
+    "title4": "Product Catalog",
+    "title5": "Shopping Cart",
+    "msg1": "Shop the Best. Save Every Day.",
+    "msg2": "Great Deals, Fast Delivery, Happy Shopping.",
+    "msg3": "Everything Delivered Across the UAE.",
+    "msg4": "Discover our latest collection of premium products at the best prices. Browse product details and add your favorite items to the cart.",
+
+
+    
     "Home": "Home",
     "About Us": "About Us",
     "Category": "Category",
