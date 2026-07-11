@@ -1,4 +1,7 @@
 import "./globals.css";
+import './realestate_style.css';
+import './realestate_style_part2.css';
+import './realestate_style_part3.css';
 import './style.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
