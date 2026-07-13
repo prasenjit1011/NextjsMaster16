@@ -628,8 +628,11 @@ export const ProductDetails = () => {
 }
 
 
+interface ProductFilterProps {
+  searchFilter?: string;
+}
 
-function ProductFilter({searchFilter}){
+function ProductFilter({searchFilter = ""}: ProductFilterProps){
     return (
         <>
             {searchFilter == "true" ? <ProductSearch boxWidth="input-group w-100 mx-auto d-flex mb-4" />:<></>}
@@ -736,7 +739,12 @@ function ProductFilterD(){
     );
 }
 
-function ProductFeature({imgName}){
+interface ProductFeatureProps {
+  imgName: string;
+}
+
+
+function ProductFeature({ imgName }: ProductFeatureProps){
     return (
         <div className="d-flex align-items-center justify-content-start">
             <div className="rounded me-4" style={{width: "100px", height: "100px"}}>
@@ -807,9 +815,12 @@ function ProductListingSearch(){
     );
 }
 
+interface ProductSearchProps {
+  boxWidth: string;
+}
 
 
-function ProductSearch({boxWidth}){
+function ProductSearch({boxWidth}:ProductSearchProps){
     return (
         <div className={boxWidth}>
             <input type="search" className="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1" />
