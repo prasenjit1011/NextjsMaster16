@@ -26,7 +26,7 @@ export const Footer = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        <span className="text-light"><a href="#"><i className="fas fa-copyright text-light me-2"></i>TuliOutlet</a>, All right reserved.</span>
+                        <span className="text-light"><a href="#"><i className="fas fa-copyright text-light me-2"></i>TuliOutlet</a>, All right reserved. 2026</span>
                     </div>
                     <div className="col-md-6 my-auto text-center text-md-end text-white">
                     </div>
