@@ -1,7 +1,39 @@
-// 'use client';
+'use client';
 
-// import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 // import 'owl.carousel/dist/assets/owl.carousel.css';
+
+
+export const ProductFilterB = () =>{
+    const [amount, setAmount] = useState(0);
+
+    return (
+        <div className="col-lg-12">
+            <div className="mb-3">
+                <h4 className="mb-2">Price</h4>
+                <input
+                    type="range"
+                    className="form-range w-100"
+                    id="rangeInput"
+                    name="rangeInput"
+                    min={0}
+                    max={500}
+                    value={amount}
+                    onChange={(e) => setAmount(Number(e.target.value))}
+                />
+                <output id="amount" name="amount" min-velue="0" max-value="500" htmlFor="rangeInput">0</output>
+            </div>
+        </div>
+    );
+}
+
+
+
+
+
+
+
+
 
 // export const ComponentTestimonial = () => {
 //     useEffect(() => {

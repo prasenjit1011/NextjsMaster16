@@ -7,11 +7,9 @@ import ReduxProvider from '../../lib/provider';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import { getLocale, getTranslations } from "next-intl/server";
-
-// import './navbar.css'
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Banner, { Footer, NewNavBar } from '../components/EshopComponents';
+import { Footer, NewNavBar } from '../components/EshopComponents';
+import Banner from '../components/Banner';
 
 export const metadata = {
   title: "My App",
@@ -19,12 +17,11 @@ export const metadata = {
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
-  const pageTitle = 'Home'
   return (
         <ReduxProvider>
           <div style={{ border: "0px solid #b70951", padding: 0, marginTop: 0 }}>
           <NewNavBar />
-          <Banner pageTitle={pageTitle} />
+          <Banner />
           {children}
           <Footer />
           </div>
