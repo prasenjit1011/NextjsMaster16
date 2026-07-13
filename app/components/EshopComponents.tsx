@@ -820,4 +820,3 @@ function ProductSearch({boxWidth}){
 
 
 
-
