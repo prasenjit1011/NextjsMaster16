@@ -10,7 +10,10 @@ const API_URL = process.env.BACKEND_API + "/api/items";
 async function getProduct(id: string) {
   try {
     const res = await fetch(`${API_URL}/${id}`, {
-      cache: "no-store",
+      next: {
+        revalidate: 60 * 60 * 24 * 5,
+        tags: ["products"],
+      },
       headers: {
         Accept: "application/json",
       },
