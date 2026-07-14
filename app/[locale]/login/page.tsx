@@ -37,7 +37,9 @@ const LoginPage = () => {
       console.log('Dashboard', await res.json());
 
       // Redirect using the current locale
-      router.replace(`/${locale}/dashboard`);
+      // router.replace(`/${locale}/dashboard`);
+      router.replace(`/${locale}`);
+
     }
   };
 
