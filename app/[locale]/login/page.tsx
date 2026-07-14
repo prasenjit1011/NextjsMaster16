@@ -34,8 +34,8 @@ const LoginPage = () => {
       const data = await res.json();
 
       if (!res.ok) {
-        setErrormsg(data.message);
-        setIsLoading(false)
+        setTimeout(()=>setErrormsg(data.message), 2000);
+        setTimeout(()=>setIsLoading(false), 1500);
         return;
       }
 
@@ -53,25 +53,42 @@ const LoginPage = () => {
   };
 
 
-  if(isLoading){
-    return (
-        <div className="container"><div className="login-card"><div className="page-loader">
-          <div className="loader"></div>
-          <p>Signing in...</p>
-        </div></div></div>
-      )
-  }
+  // if(isLoading){
+  //   return (
+  //       <div className="container"><div className="login-card"><div className="page-loader">
+  //         <div className="loader"></div>
+  //         <p>Signing in...</p>
+  //         {
+  //           errmsg ? (
+  //             <p style={{color:"red"}}>{errmsg}</p>
+  //           ):(
+  //             <p>Signing in...</p>
+  //           )
+  //         }
+  //       </div></div></div>
+  //     )
+  // }
 
 
   return (
     <div className="container">
       <div className="login-card">
-        <h2>Welcome Back</h2>        
+        <h2>Welcome Back</h2>
+        <p>Sign in to continue</p>
+        {/* {
+          isLoading ?
+          errmsg ? (
+            <p style={{color:"red"}}>{errmsg}</p>
+          ):(
+            <p>Signing in...</p>
+          )
+          :<p>&nbsp;</p>
+        } */}
         {
           errmsg ? (
             <p style={{color:"red"}}>{errmsg}</p>
           ):(
-            <p>Sign in to continue</p>
+            isLoading ? <p>Signing in...</p>:<p>&nbsp;</p>
           )
         }
 

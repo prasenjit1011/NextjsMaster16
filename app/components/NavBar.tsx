@@ -29,7 +29,7 @@ export const NavBar = async () => {
 
       <nav className="navbar">
         <Link href={`/${locale}`}>{text("Home")}</Link>
-        <Link href={`/${locale}/aboutus`}>{text("About Us")}</Link>
+        <Link href={`/${locale}/aboutus`}>{text("AboutUs")}</Link>
         <Link href={`/${locale}/category/item`}>{text("Catalog")}</Link>
         <Link href={`/${locale}/cart`}>{text("Cart")}</Link>
         <Link href={`/${locale}/dashboard`}>{text("Dashboard")}</Link>
