@@ -41,8 +41,10 @@ const LoginPage = () => {
 
       console.log(data);
 
-      router.refresh();
-      router.replace(`/${locale}`);
+      // router.refresh();
+      await new Promise(resolve => setTimeout(resolve, 100));
+      console.log('Doc cookie : ',document.cookie);
+      router.replace(`/${locale}/dashboard`);
     } catch (err) {
       console.error(err);
       setIsLoading(false);

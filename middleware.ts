@@ -38,6 +38,18 @@ export default function middleware(request: NextRequest) {
   // ============================
   const token = request.cookies.get('token')?.value;
 
+
+  console.log('----------------');
+  console.log('pathname:', pathname);
+  console.log('cookie header:', request.headers.get('cookie'));
+  console.log('token:', request.cookies.get('token')?.value);
+  console.log('----------------');
+
+
+
+
+
+
   const localePattern = locales.join('|');
 
   const isProtected = new RegExp(
@@ -45,7 +57,7 @@ export default function middleware(request: NextRequest) {
   ).test(pathname);
 
   if (isProtected && !token) {
-    return NextResponse.redirect(new URL('/login', request.url));
+    return NextResponse.redirect(new URL('/en/login', request.url));
   }
 
   // ============================
