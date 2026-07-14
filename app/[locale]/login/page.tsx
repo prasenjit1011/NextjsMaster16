@@ -2,7 +2,7 @@
 
 import './../../style.css';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 
 const LoginPage = () => {
@@ -39,53 +39,27 @@ const LoginPage = () => {
         return;
       }
 
-      console.log(data);
+      // const dashboardPath = `/${locale}/admin/products`;
+      const dashboardPath = `/${locale}/dashboard`;
+      router.replace(dashboardPath);
+      // router.push(dashboardPath);
+      // redirect(dashboardPath);
 
-      // router.refresh();
-      await new Promise(resolve => setTimeout(resolve, 100));
-      console.log('Doc cookie : ',document.cookie);
-      router.replace(`/${locale}/dashboard`);
-    } catch (err) {
-      console.error(err);
+    } 
+    catch (err) {
       setIsLoading(false);
-      setErrormsg('Something went wrong.');
-    } finally {
+      // setErrormsg('Something went wrong.');
+    } 
+    finally {
       
     }
   };
-
-
-  // if(isLoading){
-  //   return (
-  //       <div className="container"><div className="login-card"><div className="page-loader">
-  //         <div className="loader"></div>
-  //         <p>Signing in...</p>
-  //         {
-  //           errmsg ? (
-  //             <p style={{color:"red"}}>{errmsg}</p>
-  //           ):(
-  //             <p>Signing in...</p>
-  //           )
-  //         }
-  //       </div></div></div>
-  //     )
-  // }
-
 
   return (
     <div className="container">
       <div className="login-card">
         <h2>Welcome Back</h2>
         <p>Sign in to continue</p>
-        {/* {
-          isLoading ?
-          errmsg ? (
-            <p style={{color:"red"}}>{errmsg}</p>
-          ):(
-            <p>Signing in...</p>
-          )
-          :<p>&nbsp;</p>
-        } */}
         {
           errmsg ? (
             <p style={{color:"red"}}>{errmsg}</p>

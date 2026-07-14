@@ -37,32 +37,16 @@ export default function middleware(request: NextRequest) {
   // Authentication
   // ============================
   const token = request.cookies.get('token')?.value;
-
-
-  console.log('----------------');
-  console.log('pathname:', pathname);
-  console.log('cookie header:', request.headers.get('cookie'));
-  console.log('token:', request.cookies.get('token')?.value);
-  console.log('----------------');
-
-
-
-
-
-
   const localePattern = locales.join('|');
 
   const isProtected = new RegExp(
-    `^(/(${localePattern}))?/dashboard(/|$)`
+    `^(/(${localePattern}))?/(dashboard|admin)(/|$)`
   ).test(pathname);
-
+ 
   if (isProtected && !token) {
     return NextResponse.redirect(new URL('/en/login', request.url));
   }
 
-  // ============================
-  // next-intl
-  // ============================
   return intlMiddleware(request);
 }
 

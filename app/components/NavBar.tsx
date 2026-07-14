@@ -32,7 +32,7 @@ export const NavBar = async () => {
         <Link href={`/${locale}/aboutus`}>{text("AboutUs")}</Link>
         <Link href={`/${locale}/category/item`}>{text("Catalog")}</Link>
         <Link href={`/${locale}/cart`}>{text("Cart")}</Link>
-        <Link href={`/${locale}/dashboard`}>{text("Dashboard")}</Link>
+        <Link href={`/dashboard`}>{text("Dashboard")}</Link>
 
         {/* Language Dropdown */}
         <div className="language-dropdown">

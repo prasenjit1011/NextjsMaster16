@@ -76,8 +76,8 @@ export async function POST(req: Request) {
     });
 
     response.cookies.set({
-      name: 'token',
-      value: data.access_token,
+      name: 'auth_state',
+      value: 'logged-in',
       httpOnly: false,
       secure: isProd,
       sameSite: 'lax',
