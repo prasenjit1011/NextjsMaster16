@@ -31,7 +31,10 @@ export default function ProductPage() {
       )}&page=1&limit=10`;
 
       const res = await fetch(url, {
-        cache: 'no-store',
+        next: {
+          revalidate: 60 * 60 * 24 * 5,
+          tags: ["products"],
+        },
         credentials: 'include',
         headers: {
           Accept: 'application/json',
