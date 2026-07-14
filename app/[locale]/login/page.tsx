@@ -10,44 +10,70 @@ const LoginPage = () => {
 
   const [email, setEmail] = useState('admin');
   const [password, setPassword] = useState('admin');
-  const [logStatus, setLogStatus] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errmsg, setErrormsg] = useState('');
 
   const router = useRouter();
 
-  const obj = {
-    username: email,
-    password
-  };
-
-  const payload = JSON.stringify(obj);
-
-  const bodyData = {
-    method: 'POST',
-    body: payload,
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
-
   const handleLogin = async () => {
-    const res = await fetch('/api/auth/login', bodyData);
+    try {
+      setIsLoading(true);
+      setErrormsg('');
 
-    if (res.ok) {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: email,
+          password,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setErrormsg(data.message);
+        setIsLoading(false)
+        return;
+      }
+
+      console.log(data);
+
       router.refresh();
-      console.log('Dashboard', await res.json());
-
-      // Redirect using the current locale
-      // router.replace(`/${locale}/dashboard`);
       router.replace(`/${locale}`);
-
+    } catch (err) {
+      console.error(err);
+      setIsLoading(false);
+      setErrormsg('Something went wrong.');
+    } finally {
+      
     }
   };
+
+
+  if(isLoading){
+    return (
+        <div className="container"><div className="login-card"><div className="page-loader">
+          <div className="loader"></div>
+          <p>Signing in...</p>
+        </div></div></div>
+      )
+  }
+
 
   return (
     <div className="container">
       <div className="login-card">
-        <h2>Welcome Back</h2>
-        <p>Sign in to continue</p>
+        <h2>Welcome Back</h2>        
+        {
+          errmsg ? (
+            <p style={{color:"red"}}>{errmsg}</p>
+          ):(
+            <p>Sign in to continue</p>
+          )
+        }
 
         <div className="form-group">
           <label>Email Address</label>
@@ -55,6 +81,7 @@ const LoginPage = () => {
             type="email"
             placeholder="Enter your email"
             value={email}
+            disabled={isLoading}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -65,13 +92,14 @@ const LoginPage = () => {
             type="password"
             placeholder="Enter your password"
             value={password}
+            disabled={isLoading}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
         <div className="options">
           <label>
-            <input type="checkbox" />
+            <input type="checkbox" disabled={isLoading} />
             Remember me
           </label>
           <a href="#">Forgot Password?</a>
@@ -81,9 +109,13 @@ const LoginPage = () => {
           <button
             onClick={handleLogin}
             className="btn"
-            style={{ cursor: 'pointer' }}
+            disabled={isLoading}
+            style={{
+              cursor: isLoading ? 'not-allowed' : 'pointer',
+              opacity: isLoading ? 0.7 : 1,
+            }}
           >
-            Login
+            {isLoading ? 'Logging in...' : 'Login'}
           </button>
         </div>
       </div>
