@@ -4,15 +4,16 @@ import "./item.css";
 import AddToCartButton from "@/app/components/AddToCartButton";
 import { getTranslations } from "next-intl/server";
 
-const API_URL = process.env.BACKEND_API + "/api/items";
+const API_URL = (process.env.NODE_ENV == 'production' ?  process.env.BACKEND_API : process.env.BACKEND_API_LOCAL) + "/api/items";
 
 async function getProducts() {
   try {
     const res = await fetch(API_URL, {
-      next: {
-        revalidate: 60 * 60 * 24 * 5,
-        tags: ["products"],
-      },
+      cache: "no-store",
+      // next: {
+      //   revalidate: 60 * 60 * 24 * 5,
+      //   tags: ["products"],
+      // },
       headers: {
         Accept: "application/json",
       },

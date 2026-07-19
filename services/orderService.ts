@@ -1,6 +1,9 @@
-import axios from "axios";
+const API_BASE =
+        process.env.NODE_ENV == 'production'
+          ? process.env.NEXT_PUBLIC_BACKEND_API
+          : process.env.NEXT_PUBLIC_BACKEND_API_LOCAL;
 
-const ORDER_API = process.env.NEXT_PUBLIC_BACKEND_API + "/api/orders";
+const ORDER_API = `${API_BASE}/api/orders`;
 
 export interface CartItem {
   id: number;
@@ -8,57 +11,77 @@ export interface CartItem {
   price: number;
 }
 
+const defaultOptions: RequestInit = {
+  credentials: "include",
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
+};
+
 export async function createOrder(
   cart: CartItem[],
   userId: number
 ) {
   const response = await fetch(ORDER_API, {
+    ...defaultOptions,
     method: "POST",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "*/*",
-    },
     body: JSON.stringify({
       userId,
-      items: cart.map((item) => ({
-        productId: item.id,
-        qty: item.quantity,
-        price: item.price,
+      items: cart.map(({ id, quantity, price }) => ({
+        productId: id,
+        qty: quantity,
+        price,
       })),
     }),
   });
 
   const result = await response.json();
 
-  if (!response.ok || !result.success) {
-    throw new Error(result.message || "Failed to create order");
+  if (!response.ok) {
+    throw new Error(result?.message || "Failed to create order");
   }
 
   return result.data;
 }
 
-export const getOrders = async (
-  page: number = 1,
-  limit: number = 10
-) => {
-  const res = await axios.get(ORDER_API, {
-    params: {
-      page,
-      limit,
-    },
-    withCredentials: true,
+export async function getOrders(
+  page = 1,
+  limit = 10
+) {
+  const params = new URLSearchParams({
+    page: String(page),
+    limit: String(limit),
   });
 
-  return res.data;
-};
+  const response = await fetch(`${ORDER_API}?${params}`, {
+    ...defaultOptions,
+    method: "GET",
+    cache: "no-store",
+  });
 
-export const deleteOrder = async (
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result?.message || "Failed to fetch orders");
+  }
+
+  return result.data;
+}
+
+export async function deleteOrder(
   id: number | string
-) => {
-  const res = await axios.delete(`${ORDER_API}/${id}`, {
-    withCredentials: true,
+) {
+  const response = await fetch(`${ORDER_API}/${id}`, {
+    ...defaultOptions,
+    method: "DELETE",
   });
 
-  return res.data;
-};
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result?.message || "Failed to delete order");
+  }
+
+  return result.data;
+}

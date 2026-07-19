@@ -18,7 +18,7 @@ const [totalPages, setTotalPages] = useState(1);
     try {
       const result = await getOrders();
 
-      setOrders(result.data || []);
+      setOrders(result || []);
     } catch (error) {
       console.error(error);
     } finally {

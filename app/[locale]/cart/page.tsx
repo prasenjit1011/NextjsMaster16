@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { createOrder } from "@/services/orderService";
+import { createOrder } from '@/services/orderService';
 import {
   CartItem,
   clearCart,
